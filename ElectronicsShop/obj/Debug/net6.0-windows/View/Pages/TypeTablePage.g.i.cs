@@ -53,7 +53,7 @@ namespace ElectronicsShop.View.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ElectronicsShop;component/view/pages/typetablepage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ElectronicsShop;V1.0.0.0;component/view/pages/typetablepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Pages\TypeTablePage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
