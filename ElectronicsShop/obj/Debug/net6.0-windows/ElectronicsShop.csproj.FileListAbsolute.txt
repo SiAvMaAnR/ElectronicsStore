@@ -25,9 +25,9 @@ D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\runtime
 D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\ElectronicsShop.csproj.CopyComplete
-D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\View\Windows\MainWindow.g.cs
-D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\View\Windows\MainWindow.baml
-D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\View\Pages\ClientTablePage.g.cs
-D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\View\Pages\TypeTablePage.g.cs
-D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\View\Pages\ClientTablePage.baml
-D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\View\Pages\TypeTablePage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\ClientTablePage.g.cs
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\TypeTablePage.g.cs
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Windows\MainWindow.g.cs
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\ClientTablePage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\TypeTablePage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Windows\MainWindow.baml

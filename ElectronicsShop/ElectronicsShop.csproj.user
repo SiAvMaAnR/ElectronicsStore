@@ -7,21 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\Pages\ClientTablePage.xaml.cs">
+    <Compile Update="Views\Pages\ClientTablePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Pages\TypeTablePage.xaml.cs">
+    <Compile Update="Views\Pages\TypeTablePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="View\Pages\ClientTablePage.xaml">
+    <Page Update="Views\Pages\ClientTablePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Pages\TypeTablePage.xaml">
+    <Page Update="Views\Pages\TypeTablePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Windows\MainWindow.xaml">
+    <Page Update="Views\Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -7,35 +7,21 @@ namespace ElectronicsShop.Services
 {
     public class InteractionDataBaseService
     {
+        public SqlDataAdapter sqlDataAdapter;
+
         public async Task<DataTable> GetAllDataTable(SqlConnection sqlConnection, string nameDB)
         {
-            string sqlScript = $"SELECT * FROM {nameDB}";
+            string sqlScript = $"SELECT * FROM {nameDB};";
 
-            DataTable dataTable = new DataTable("Type");
+            DataTable dataTable = new DataTable(nameDB);
             await Task.Run(() =>
             {
                 SqlCommand sqlCommand = new SqlCommand(sqlScript, sqlConnection);
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 sqlDataAdapter.Fill(dataTable);
             });
 
-
-            string sum = "";
-            foreach (DataRow item in dataTable.Rows)
-            {
-                var cells = item.ItemArray;
-                foreach (var cell in cells)
-                {
-                    sum += cell?.ToString() + " ";
-                }
-                sum += "\n";
-            }
-
-            MessageBox.Show(sum);
             return dataTable;
         }
-
-
-
     }
 }
