@@ -20,7 +20,7 @@ namespace ElectronicsShop
                 InitializeComponent();
 
                 sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDB"].ConnectionString);
-               
+
                 mainViewModel = new MainViewModel();
 
                 typePage = new Views.Pages.TypePage();
@@ -41,28 +41,52 @@ namespace ElectronicsShop
         }
 
 
-        public async Task<MainWindow> Create()
-        {
-            await sqlConnection.OpenAsync();
-            return this;
-        }
-
-
-
         private async void FillDataGrid()
         {
-            typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetAllDataTable(sqlConnection, "Type");
+            try
+            {
+                await sqlConnection.OpenAsync();
+                typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetDataTable(sqlConnection, "Type", "ORDER BY TypeId ASC");
+
+
+
+
+                await sqlConnection.CloseAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+
+        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var sqlAdapter = typePage.TypeDataBaseService.sqlDataAdapter;
+            try
+            {
+                await sqlConnection.OpenAsync();
 
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(sqlAdapter);
-            sqlAdapter.Update(typePage.TypeViewModel.TypeDataTable);
+                await typePage.TypeDataBaseService.UpdateDataBase(typePage.TypeViewModel.TypeDataTable);
+                await typePage.TypeDataBaseService.UpdateDataTable(typePage.TypeViewModel.TypeDataTable);
 
-
+                await sqlConnection.CloseAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
+
+
+        private void ButtonType_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = typePage;
+        }
+
+        private void ButtonClient_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = clientPage;
+        }
     }
 }

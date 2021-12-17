@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ElectronicsShop.Services;
+using ElectronicsShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,9 @@ namespace ElectronicsShop.Views.Pages
     /// </summary>
     public partial class ClientPage : Page
     {
+        public ClientViewModel ClientViewModel = new ClientViewModel();
+        public InteractionDataBaseService ClientDataBaseService = new ClientDataBaseService();
+
         public ClientPage()
         {
             InitializeComponent();

@@ -8,7 +8,29 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Client">
 
-    <Grid Background="Red">
-        
+    <Page.Resources>
+        <Style TargetType="DataGridCell" x:Key="Cell">
+            <Style.Setters>
+                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontFamily" Value="Arial" />
+            </Style.Setters>
+        </Style>
+    </Page.Resources>
+   
+    <Grid>
+        <DataGrid ItemsSource="{Binding ClientDataTable.DefaultView}" AutoGenerateColumns="False">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="Padding" Value="5 0"></Setter>
+                    <Setter Property="FontSize" Value="20"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="10*" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True"/>
+                <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="90*" Header="Name" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
