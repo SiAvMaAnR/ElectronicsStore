@@ -28,7 +28,6 @@ namespace ElectronicsShop.Services
 
         public async Task UpdateDataBase(DataTable table)
         {
-
             await Task.Run(() =>
             {
                 try
@@ -42,8 +41,11 @@ namespace ElectronicsShop.Services
 
         public async Task UpdateDataTable(DataTable table)
         {
-            table.Clear();
-            sqlDataAdapter.Fill(table);
+            await Task.Run(() =>
+            {
+                table.Clear();
+                sqlDataAdapter.Fill(table);
+            });
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicsShop"
         mc:Ignorable="d"
-        Title="Electronics Store" Height="600" Width="1100">
+        Title="Electronics Store" Height="600" Width="1100" Icon="/Views/Windows/icons8-электроника-100.png" >
 
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ButtonUpdate">

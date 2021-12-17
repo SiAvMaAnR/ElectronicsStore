@@ -50,7 +50,6 @@ namespace ElectronicsShop
 
 
 
-
                 await sqlConnection.CloseAsync();
             }
             catch (Exception ex)
