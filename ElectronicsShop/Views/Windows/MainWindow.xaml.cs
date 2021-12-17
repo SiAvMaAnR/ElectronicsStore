@@ -11,8 +11,8 @@ namespace ElectronicsShop
     {
         private MainViewModel mainViewModel;
         private SqlConnection sqlConnection;
-        private View.Pages.TypeTablePage typeTablePage;
-        private View.Pages.ClientTablePage clientTablePage;
+        private Views.Pages.TypePage typePage;
+        private Views.Pages.ClientPage clientPage;
         public MainWindow()
         {
             try
@@ -23,12 +23,12 @@ namespace ElectronicsShop
                
                 mainViewModel = new MainViewModel();
 
-                typeTablePage = new View.Pages.TypeTablePage();
-                clientTablePage = new View.Pages.ClientTablePage();
+                typePage = new Views.Pages.TypePage();
+                clientPage = new Views.Pages.ClientPage();
 
                 DataContext = mainViewModel;
 
-                mainViewModel.FrameCurrentPage = typeTablePage;
+                mainViewModel.FrameCurrentPage = typePage;
 
                 FillDataGrid();
 
@@ -51,15 +51,15 @@ namespace ElectronicsShop
 
         private async void FillDataGrid()
         {
-            typeTablePage.TypeViewModel.TypeDataTable = await typeTablePage.TypeDataBaseService.GetAllDataTable(sqlConnection, "Type");
+            typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetAllDataTable(sqlConnection, "Type");
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var sqlAdapter = typeTablePage.TypeDataBaseService.sqlDataAdapter;
+            var sqlAdapter = typePage.TypeDataBaseService.sqlDataAdapter;
 
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(sqlAdapter);
-            sqlAdapter.Update(typeTablePage.TypeViewModel.TypeDataTable);
+            sqlAdapter.Update(typePage.TypeViewModel.TypeDataTable);
 
 
         }

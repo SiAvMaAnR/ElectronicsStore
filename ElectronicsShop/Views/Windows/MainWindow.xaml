@@ -6,33 +6,73 @@
         xmlns:local="clr-namespace:ElectronicsShop"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1100">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*"/>
-            <ColumnDefinition Width="30*"/>
-        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="ButtonUpdate">
+            <Style.Setters>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontSize" Value="25"/>
+            </Style.Setters>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="ButtonPage">
+            <Style.Setters>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="Background" Value="Transparent"/>
+                
+            </Style.Setters>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Button Content="Type" Style="{StaticResource ButtonPage}"/>
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Button Content="update" Style="{StaticResource ButtonUpdate}" Click="UpdateButton_Click"/>
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="1" >
             <Frame Content="{Binding FrameCurrentPage}"  NavigationUIVisibility="Hidden"/>
         </Grid>
 
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Button Content="Type" FontSize="30"/>
-            </Grid>
-
-
-            <Grid Grid.Row="1">
-                <Button Content="update" FontSize="30" Click="UpdateButton_Click"/>
-            </Grid>
-        </Grid>
     </Grid>
 </Window>

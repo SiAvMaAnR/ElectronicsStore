@@ -3,14 +3,14 @@ using ElectronicsShop.Services;
 using ElectronicsShop.ViewModels;
 using System.Windows.Controls;
 
-namespace ElectronicsShop.View.Pages
+namespace ElectronicsShop.Views.Pages
 {
-    public partial class TypeTablePage : Page
+    public partial class TypePage : Page
     {
         public TypeViewModel TypeViewModel = new TypeViewModel();
         public InteractionDataBaseService TypeDataBaseService = new TypeDataBaseService();
 
-        public TypeTablePage()
+        public TypePage()
         {
             InitializeComponent();
             DataContext = TypeViewModel;

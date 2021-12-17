@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ElectronicsShop.View.Pages
+namespace ElectronicsShop.Views.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Client.xaml
     /// </summary>
-    public partial class ClientTablePage : Page
+    public partial class ClientPage : Page
     {
-        public ClientTablePage()
+        public ClientPage()
         {
             InitializeComponent();
         }
