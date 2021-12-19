@@ -31,8 +31,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
 
@@ -46,8 +46,8 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="80*" Header="Name" Binding="{Binding Name}" >
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="90*" Header="Наименование" Binding="{Binding Name}" >
                         <DataGridTextColumn.EditingElementStyle>
                             <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="MaxLength" Value="40"/>

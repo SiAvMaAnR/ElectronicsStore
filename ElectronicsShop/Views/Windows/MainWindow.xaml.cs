@@ -47,6 +47,7 @@ namespace ElectronicsShop
             {
                 await sqlConnection.OpenAsync();
                 typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetDataTable(sqlConnection, "Type", "ORDER BY TypeId ASC");
+                clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "Client", "ORDER BY ClientId ASC");
             }
             catch (Exception ex)
             {
@@ -67,6 +68,9 @@ namespace ElectronicsShop
 
                 await typePage.TypeDataBaseService.UpdateDataBase(typePage.TypeViewModel.TypeDataTable);
                 typePage.TypeDataBaseService.UpdateDataTable(typePage.TypeViewModel.TypeDataTable);
+
+                await clientPage.ClientDataBaseService.UpdateDataBase(clientPage.ClientViewModel.ClientDataTable);
+                clientPage.ClientDataBaseService.UpdateDataTable(clientPage.ClientViewModel.ClientDataTable);
 
 
             }
