@@ -24,6 +24,7 @@ namespace ElectronicsShop.Services
             DataTable dataTable = new DataTable(nameDB);
             await Task.Run(() =>
             {
+                dataTable.AcceptChanges();
                 SqlCommand sqlCommand = new SqlCommand(sqlScript, sqlConnection);
                 sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 sqlDataAdapter.Fill(dataTable);
@@ -41,8 +42,6 @@ namespace ElectronicsShop.Services
                     SqlCommandBuilder commandBuilder1 = new SqlCommandBuilder(sqlDataAdapter);
 
                     sqlDataAdapter.Update(table);
-                    table.AcceptChanges();
-
                 }
                 catch (Exception ex)
                 {

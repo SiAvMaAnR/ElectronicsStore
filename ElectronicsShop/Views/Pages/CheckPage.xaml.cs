@@ -22,7 +22,7 @@ namespace ElectronicsShop.Views.Pages
     {
         public CheckViewModel CheckViewModel = new CheckViewModel();
         public InteractionDataBaseService CheckDataBaseService;
-        private readonly string tableName = "Check";
+        private readonly string tableName = "[Check]";
 
         public CheckPage(SqlConnection sqlConnection)
         {

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\source\repos\ElectronicsShop\ElectronicsShop\App.xaml
-42144223876
+5-19798879
 
-151380343077
+161420116461
 195-1805747555
-Views\Pages\CheckPage.xaml;Views\Pages\ClientPage.xaml;Views\Pages\TypePage.xaml;Views\Windows\MainWindow.xaml;
+Views\Pages\CheckPage.xaml;Views\Pages\ClientPage.xaml;Views\Pages\TypePage.xaml;Views\Windows\MainWindow.xaml;Views\Windows\SelectionWindow.xaml;
 
 False
 

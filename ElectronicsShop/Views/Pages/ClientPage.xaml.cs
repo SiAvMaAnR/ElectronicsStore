@@ -25,7 +25,7 @@ namespace ElectronicsShop.Views.Pages
     {
         public ClientViewModel ClientViewModel = new ClientViewModel();
         public InteractionDataBaseService ClientDataBaseService;
-        private readonly string tableName = "Client";
+        private readonly string tableName = "[Client]";
         public ClientPage(SqlConnection sqlConnection)
         {
             InitializeComponent();

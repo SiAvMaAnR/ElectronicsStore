@@ -12,7 +12,7 @@ namespace ElectronicsShop.Views.Pages
     {
         public TypeViewModel TypeViewModel = new TypeViewModel();
         public InteractionDataBaseService TypeDataBaseService;
-        private readonly string tableName = "Type";
+        private readonly string tableName = "[Type]";
 
         public TypePage(SqlConnection sqlConnection)
         {
