@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicsShop"
         mc:Ignorable="d"
-        Title="{Binding Title}" UseLayoutRounding="True" Height="700" Width="1300" Icon="/Views/Windows/icons8-электроника-100.png" >
+        Title="{Binding Title}" Height="700" Width="1300" Icon="/Views/Windows/icons8-электроника-100.png" >
 
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ButtonUpdate">
@@ -59,15 +59,16 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="FontFamily" Value="Arial"/>
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="#FFE5E3E3"/>
+                <Setter Property="FontSize" Value="18"/>
                 <Setter Property="Margin" Value="5"/>
                 <Setter Property="BorderThickness" Value="0"/>
             </Style.Setters>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FF434345"/>
+                    <Setter Property="Foreground" Value="White"/>
                 </Trigger>
             </Style.Triggers>
             <Style.Resources>
@@ -122,7 +123,7 @@
                 </Grid>
 
                 <Grid Grid.Column="4">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Поставщик" Style="{StaticResource ButtonPage}" Click="Button_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="5">

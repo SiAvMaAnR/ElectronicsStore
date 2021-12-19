@@ -11,9 +11,12 @@ namespace ElectronicsShop
     {
         private MainViewModel mainViewModel;
         private SqlConnection sqlConnection;
+
         private Views.Pages.TypePage typePage;
         private Views.Pages.ClientPage clientPage;
         private Views.Pages.CheckPage checkPage;
+        private Views.Pages.SupplierPage supplierPage;
+
         public MainWindow()
         {
             try
@@ -27,6 +30,7 @@ namespace ElectronicsShop
                 typePage = new Views.Pages.TypePage(sqlConnection);
                 clientPage = new Views.Pages.ClientPage(sqlConnection);
                 checkPage = new Views.Pages.CheckPage(sqlConnection);
+                supplierPage = new Views.Pages.SupplierPage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -51,6 +55,7 @@ namespace ElectronicsShop
                 typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetDataTable(sqlConnection, "[dbo].[Type]", "ORDER BY TypeId ASC");
                 clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "[dbo].[Client]", "ORDER BY ClientId ASC");
                 checkPage.CheckViewModel.CheckDataTable = await checkPage.CheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[Check]", "ORDER BY CheckId ASC");
+                supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
             }
             catch (Exception ex)
             {
@@ -77,6 +82,9 @@ namespace ElectronicsShop
 
                 await checkPage.CheckDataBaseService.UpdateDataBase(checkPage.CheckViewModel.CheckDataTable);
                 checkPage.CheckDataBaseService.UpdateDataTable(checkPage.CheckViewModel.CheckDataTable);
+
+                await supplierPage.SupplierDataBaseService.UpdateDataBase(supplierPage.SupplierViewModel.SupplierDataTable);
+                supplierPage.SupplierDataBaseService.UpdateDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
             }
             catch (Exception ex)
             {
@@ -103,6 +111,11 @@ namespace ElectronicsShop
         private void ButtonCheck_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = checkPage;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = supplierPage;
         }
     }
 }

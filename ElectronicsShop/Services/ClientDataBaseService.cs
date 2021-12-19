@@ -25,7 +25,7 @@ namespace ElectronicsShop.Services
                 [LastName]    NVARCHAR(40) NOT NULL,
                 [MiddleName]  NVARCHAR(40) NOT NULL,
                 [Age]         INT NOT NULL,
-                [PhoneNumber] NVARCHAR(15)  NULL,
+                [PhoneNumber] NVARCHAR(25)  NULL,
                 UNIQUE NONCLUSTERED([FirstName] ASC, [LastName] ASC, [MiddleName] ASC));";
 
 
