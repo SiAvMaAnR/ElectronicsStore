@@ -16,6 +16,17 @@
                 <Setter Property="FontFamily" Value="Arial" />
             </Style.Setters>
         </Style>
+        <Style TargetType="{x:Type TextBox}" x:Key ="ColumnDG">
+            <Setter Property="MaxLength" Value="10"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="TestButton">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="FontSize" Value="40"/>
+            </Style.Setters>
+        </Style>
+
     </Page.Resources>
 
     <Grid>
@@ -23,10 +34,10 @@
             <ColumnDefinition Width="70*"/>
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
-        
-        
+
+
         <Grid Grid.Column="0">
-            <DataGrid ItemsSource="{Binding TypeDataTable.DefaultView}" AutoGenerateColumns="False">
+            <DataGrid  ItemsSource="{Binding TypeDataTable.DefaultView}" AutoGenerateColumns="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
@@ -36,14 +47,38 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="80*" Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="80*" Header="Name" Binding="{Binding Name}" >
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="MaxLength" Value="40"/>
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
 
         <Grid Grid.Column="1">
-            <Button/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button Content="Truncate" Style="{StaticResource TestButton}"  Click="Button_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Button Content="Create" Style="{StaticResource TestButton}" Click="Button_Click_1"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Button Content="Drop" Style="{StaticResource TestButton}" Click="Button_Click_2"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

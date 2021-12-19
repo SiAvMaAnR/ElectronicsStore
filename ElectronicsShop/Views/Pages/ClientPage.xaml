@@ -16,6 +16,9 @@
                 <Setter Property="FontFamily" Value="Arial" />
             </Style.Setters>
         </Style>
+        <Style TargetType="{x:Type TextBox}" x:Key ="ColumnDG">
+            <Setter Property="MaxLength" Value="10"/>
+        </Style>
     </Page.Resources>
    
     <Grid>
@@ -28,8 +31,13 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="10*" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True"/>
-                <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="90*" Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="10*" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True">
+                    
+                </DataGridTextColumn>
+                
+                <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="90*" Header="Name" Binding="{Binding Name}" >
+                    
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

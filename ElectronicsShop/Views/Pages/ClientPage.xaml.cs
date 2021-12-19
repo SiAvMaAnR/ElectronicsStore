@@ -2,6 +2,7 @@
 using ElectronicsShop.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,13 @@ namespace ElectronicsShop.Views.Pages
     public partial class ClientPage : Page
     {
         public ClientViewModel ClientViewModel = new ClientViewModel();
-        public InteractionDataBaseService ClientDataBaseService = new ClientDataBaseService();
+        public InteractionDataBaseService ClientDataBaseService;
 
-        public ClientPage()
+        public ClientPage(SqlConnection sqlConnection)
         {
             InitializeComponent();
+            DataContext = ClientViewModel;
+            ClientDataBaseService = new ClientDataBaseService(sqlConnection);
         }
     }
 }

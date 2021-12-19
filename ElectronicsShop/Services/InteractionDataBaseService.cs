@@ -6,13 +6,19 @@ using System.Windows;
 
 namespace ElectronicsShop.Services
 {
-    public class InteractionDataBaseService
+    public abstract class InteractionDataBaseService
     {
         public SqlDataAdapter sqlDataAdapter;
+        public SqlConnection sqlConnection;
 
-        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlSqcript = "")
+        public InteractionDataBaseService(SqlConnection sqlConnection)
         {
-            string sqlScript = $"SELECT * FROM {nameDB} {additionalSqlSqcript}";
+            this.sqlConnection = sqlConnection;
+        }
+
+        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript = "")
+        {
+            string sqlScript = $"SELECT * FROM {nameDB} {additionalSqlScript}";
 
 
             DataTable dataTable = new DataTable(nameDB);
@@ -35,16 +41,27 @@ namespace ElectronicsShop.Services
                     SqlCommandBuilder commandBuilder1 = new SqlCommandBuilder(sqlDataAdapter);
                     sqlDataAdapter.Update(table);
                 }
-                catch { throw new Exception("Проверьте корректность введенных данных!"); }
+                catch (Exception ex)
+                {
+                    throw ex ?? new Exception("Неизвестная ошибка!");
+                }
             });
         }
 
-        public async Task UpdateDataTable(DataTable table)
+        public void UpdateDataTable(DataTable table)
         {
-            await Task.Run(() =>
+            table.Clear();
+            sqlDataAdapter.Fill(table);
+        }
+
+        public async Task DropTable(SqlConnection sqlConnection, string tableName)
+        {
+            await Task.Run(async () =>
             {
-                table.Clear();
-                sqlDataAdapter.Fill(table);
+                string sqlScript = @$"DROP TABLE {tableName};";
+
+                SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
+                await command.ExecuteNonQueryAsync();
             });
         }
     }

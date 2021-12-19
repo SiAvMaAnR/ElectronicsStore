@@ -23,8 +23,8 @@ namespace ElectronicsShop
 
                 mainViewModel = new MainViewModel();
 
-                typePage = new Views.Pages.TypePage();
-                clientPage = new Views.Pages.ClientPage();
+                typePage = new Views.Pages.TypePage(sqlConnection);
+                clientPage = new Views.Pages.ClientPage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -47,14 +47,14 @@ namespace ElectronicsShop
             {
                 await sqlConnection.OpenAsync();
                 typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetDataTable(sqlConnection, "Type", "ORDER BY TypeId ASC");
-
-
-
-                await sqlConnection.CloseAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
             }
         }
 
@@ -66,13 +66,17 @@ namespace ElectronicsShop
                 await sqlConnection.OpenAsync();
 
                 await typePage.TypeDataBaseService.UpdateDataBase(typePage.TypeViewModel.TypeDataTable);
-                await typePage.TypeDataBaseService.UpdateDataTable(typePage.TypeViewModel.TypeDataTable);
+                typePage.TypeDataBaseService.UpdateDataTable(typePage.TypeViewModel.TypeDataTable);
 
-                await sqlConnection.CloseAsync();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
             }
         }
 
