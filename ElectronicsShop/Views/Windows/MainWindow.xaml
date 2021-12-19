@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicsShop"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="600" Width="1100" Icon="/Views/Windows/icons8-электроника-100.png" >
+        Title="{Binding Title}" UseLayoutRounding="True" Height="700" Width="1300" Icon="/Views/Windows/icons8-электроника-100.png" >
 
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ButtonUpdate">
@@ -13,27 +13,29 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            <Border Padding="2" BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
+
                     </Setter.Value>
                 </Setter>
                 <Setter Property="FontFamily" Value="Arial"/>
-                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontSize" Value="22"/>
                 <Setter Property="Margin" Value="10,5"/>
-                <Setter Property="Background" Value="#FFDDDDDD"/>
-                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="Background" Value="#FF5D2BB2"/>
+                <Setter Property="Foreground" Value="#FFC2C2C2"/>
                 <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#FF5D2BB2"/>
             </Style.Setters>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="White"/>
                     <Setter Property="BorderBrush" Value="White"/>
                     <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Foreground" Value="White"/>
                 </Trigger>
             </Style.Triggers>
             <Style.Resources>
@@ -85,8 +87,8 @@
 
         <Grid Grid.Row="0"  Background="#2d2d2f">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" >
@@ -112,11 +114,11 @@
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Чек" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="3">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="4">
@@ -145,7 +147,7 @@
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
-                <Button Content="Update" Style="{StaticResource ButtonUpdate}" Click="UpdateButton_Click" />
+                <Button Content="Save" Style="{StaticResource ButtonUpdate}" Click="UpdateButton_Click" />
             </Grid>
         </Grid>
 

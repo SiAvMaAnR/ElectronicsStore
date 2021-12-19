@@ -13,6 +13,7 @@ namespace ElectronicsShop
         private SqlConnection sqlConnection;
         private Views.Pages.TypePage typePage;
         private Views.Pages.ClientPage clientPage;
+        private Views.Pages.CheckPage checkPage;
         public MainWindow()
         {
             try
@@ -25,6 +26,7 @@ namespace ElectronicsShop
 
                 typePage = new Views.Pages.TypePage(sqlConnection);
                 clientPage = new Views.Pages.ClientPage(sqlConnection);
+                checkPage = new Views.Pages.CheckPage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -46,8 +48,9 @@ namespace ElectronicsShop
             try
             {
                 await sqlConnection.OpenAsync();
-                typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetDataTable(sqlConnection, "Type", "ORDER BY TypeId ASC");
-                clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "Client", "ORDER BY ClientId ASC");
+                typePage.TypeViewModel.TypeDataTable = await typePage.TypeDataBaseService.GetDataTable(sqlConnection, "[dbo].[Type]", "ORDER BY TypeId ASC");
+                clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "[dbo].[Client]", "ORDER BY ClientId ASC");
+                checkPage.CheckViewModel.CheckDataTable = await checkPage.CheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[Check]", "ORDER BY CheckId ASC");
             }
             catch (Exception ex)
             {
@@ -72,7 +75,8 @@ namespace ElectronicsShop
                 await clientPage.ClientDataBaseService.UpdateDataBase(clientPage.ClientViewModel.ClientDataTable);
                 clientPage.ClientDataBaseService.UpdateDataTable(clientPage.ClientViewModel.ClientDataTable);
 
-
+                await checkPage.CheckDataBaseService.UpdateDataBase(checkPage.CheckViewModel.CheckDataTable);
+                checkPage.CheckDataBaseService.UpdateDataTable(checkPage.CheckViewModel.CheckDataTable);
             }
             catch (Exception ex)
             {
@@ -94,6 +98,11 @@ namespace ElectronicsShop
         private void ButtonClient_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = clientPage;
+        }
+
+        private void ButtonCheck_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = checkPage;
         }
     }
 }

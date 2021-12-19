@@ -9,7 +9,9 @@
 
   <ItemGroup>
     <None Remove="Services\InteractionDataBaseService.cs~RF4d359e69.TMP" />
+    <None Remove="Views\Windows\emblemsynchronizing_93485.png" />
     <None Remove="Views\Windows\icons8-электроника-100.png" />
+    
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\Windows\emblemsynchronizing_93485.png" />
     <Resource Include="Views\Windows\icons8-электроника-100.png" />
   </ItemGroup>
 

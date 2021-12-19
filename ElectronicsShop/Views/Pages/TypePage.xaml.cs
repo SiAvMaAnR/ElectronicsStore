@@ -12,6 +12,7 @@ namespace ElectronicsShop.Views.Pages
     {
         public TypeViewModel TypeViewModel = new TypeViewModel();
         public InteractionDataBaseService TypeDataBaseService;
+        private readonly string tableName = "Type";
 
         public TypePage(SqlConnection sqlConnection)
         {
@@ -26,7 +27,7 @@ namespace ElectronicsShop.Views.Pages
             try
             {
                 await ((TypeDataBaseService)TypeDataBaseService).sqlConnection.OpenAsync();
-                await ((TypeDataBaseService)TypeDataBaseService).Truncate();
+                await ((TypeDataBaseService)TypeDataBaseService).Truncate(tableName);
                 ((TypeDataBaseService)TypeDataBaseService).UpdateDataTable(TypeViewModel.TypeDataTable);
             }
             catch (Exception ex)
@@ -62,7 +63,6 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
-                string tableName = "Type";
                 await ((TypeDataBaseService)TypeDataBaseService).sqlConnection.OpenAsync();
                 await ((TypeDataBaseService)TypeDataBaseService).DropTable(TypeDataBaseService.sqlConnection, tableName);
             }

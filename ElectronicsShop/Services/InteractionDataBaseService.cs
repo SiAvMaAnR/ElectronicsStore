@@ -39,12 +39,25 @@ namespace ElectronicsShop.Services
                 try
                 {
                     SqlCommandBuilder commandBuilder1 = new SqlCommandBuilder(sqlDataAdapter);
+
                     sqlDataAdapter.Update(table);
+                    table.AcceptChanges();
+
                 }
                 catch (Exception ex)
                 {
                     throw ex ?? new Exception("Неизвестная ошибка!");
                 }
+            });
+        }
+
+        public async Task Truncate(string tableName, string additionalSqlScript = "")
+        {
+            await Task.Run(async () =>
+            {
+                string sqlScript = @$"TRUNCATE TABLE {tableName} {additionalSqlScript};";
+                SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
+                await command.ExecuteNonQueryAsync();
             });
         }
 

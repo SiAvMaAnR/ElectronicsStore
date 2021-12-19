@@ -31,3 +31,5 @@ D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\P
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\TypePage.g.cs
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\ClientPage.baml
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\TypePage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\CheckPage.g.cs
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\CheckPage.baml

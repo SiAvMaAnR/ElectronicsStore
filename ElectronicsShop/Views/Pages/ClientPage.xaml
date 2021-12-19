@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ElectronicsShop.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Client">
+      Title="ClientPage">
 
     <Page.Resources>
         <Style TargetType="DataGridCell" x:Key="Cell">
@@ -75,13 +75,8 @@
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="№ Телефона" Binding="{Binding PhoneNumber}" >
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="MaxLength" Value="15"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="№ Телефона" Binding="{Binding PhoneNumber}" />
+
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

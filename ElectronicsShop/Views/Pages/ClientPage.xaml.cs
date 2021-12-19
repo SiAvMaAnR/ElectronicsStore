@@ -25,7 +25,7 @@ namespace ElectronicsShop.Views.Pages
     {
         public ClientViewModel ClientViewModel = new ClientViewModel();
         public InteractionDataBaseService ClientDataBaseService;
-
+        private readonly string tableName = "Client";
         public ClientPage(SqlConnection sqlConnection)
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace ElectronicsShop.Views.Pages
             try
             {
                 await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.OpenAsync();
-                await ((ClientDataBaseService)ClientDataBaseService).Truncate();
+                await ((ClientDataBaseService)ClientDataBaseService).Truncate(tableName);
                 ((ClientDataBaseService)ClientDataBaseService).UpdateDataTable(ClientViewModel.ClientDataTable);
             }
             catch (Exception ex)
@@ -75,7 +75,6 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
-                string tableName = "Client";
                 await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.OpenAsync();
                 await ((ClientDataBaseService)ClientDataBaseService).DropTable(ClientDataBaseService.sqlConnection, tableName);
             }

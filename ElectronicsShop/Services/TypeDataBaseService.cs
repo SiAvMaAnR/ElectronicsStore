@@ -14,16 +14,6 @@ namespace ElectronicsShop.Models
         {
         }
 
-        public async Task Truncate(string additionalSqlScript = "")
-        {
-            await Task.Run(async () =>
-            {
-                string sqlScript = @$"TRUNCATE TABLE TYPE {additionalSqlScript};";
-                SqlCommand command = new SqlCommand(sqlScript,sqlConnection);
-                await command.ExecuteNonQueryAsync();
-            });
-        }
-
         public async Task CreateTable()
         {
             await Task.Run(async () =>
