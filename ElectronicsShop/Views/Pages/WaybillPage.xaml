@@ -38,6 +38,11 @@
 
         <Grid Grid.Column="0">
             <DataGrid  ItemsSource="{Binding WaybillDataTable.DefaultView}" AutoGenerateColumns="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
@@ -62,9 +67,7 @@
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Дата" Binding="{Binding Date, StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Id Поставщика" Binding="{Binding SupplierId}"/>
-
-
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Поставщик" Binding="{Binding SupplierId}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

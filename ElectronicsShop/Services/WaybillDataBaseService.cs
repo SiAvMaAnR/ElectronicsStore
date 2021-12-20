@@ -17,7 +17,7 @@ namespace ElectronicsShop.Services
                 string sqlScript =
                 @$"CREATE TABLE [dbo].[Waybill](
 	            [WaybillId]INT IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-                [WaybillNumber] NVARCHAR(30) NOT NULL,
+                [WaybillNumber] NVARCHAR(30) NOT NULL UNIQUE NONCLUSTERED,
                 [Description] NVARCHAR (200) NULL,
                 [Date]  DATETIME DEFAULT SYSDATETIME() NOT NULL,
                 [SupplierId] INT REFERENCES [dbo].[Supplier] ([SupplierId]) ON DELETE CASCADE,

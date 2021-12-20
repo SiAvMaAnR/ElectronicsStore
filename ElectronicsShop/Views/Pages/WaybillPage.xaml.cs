@@ -4,6 +4,7 @@ using System;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ElectronicsShop.Views.Pages
 {
@@ -76,6 +77,14 @@ namespace ElectronicsShop.Views.Pages
             {
                 await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.CloseAsync();
             }
+        }
+
+        private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var dataGridCellTarget = (DataGridCell)sender;
+            MessageBox.Show(dataGridCellTarget.Content.ToString());
+            MessageBox.Show("Пизда");
+            // TODO: Your logic here
         }
     }
 }
