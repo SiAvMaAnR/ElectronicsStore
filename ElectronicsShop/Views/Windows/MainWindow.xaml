@@ -119,11 +119,11 @@
                 </Grid>
 
                 <Grid Grid.Column="3">
-                    <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
+                    <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonWaybill_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="4">
-                    <Button Content="Поставщик" Style="{StaticResource ButtonPage}" Click="Button_Click"/>
+                    <Button Content="Поставщик" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="5">

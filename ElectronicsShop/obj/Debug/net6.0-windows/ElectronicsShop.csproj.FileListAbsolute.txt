@@ -37,3 +37,5 @@ D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\W
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Windows\SelectionWindow.baml
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\SupplierPage.g.cs
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\SupplierPage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\WaybillPage.g.cs
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\WaybillPage.baml

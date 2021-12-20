@@ -16,6 +16,7 @@ namespace ElectronicsShop
         private Views.Pages.ClientPage clientPage;
         private Views.Pages.CheckPage checkPage;
         private Views.Pages.SupplierPage supplierPage;
+        private Views.Pages.WaybillPage waybillPage;
 
         public MainWindow()
         {
@@ -31,6 +32,7 @@ namespace ElectronicsShop
                 clientPage = new Views.Pages.ClientPage(sqlConnection);
                 checkPage = new Views.Pages.CheckPage(sqlConnection);
                 supplierPage = new Views.Pages.SupplierPage(sqlConnection);
+                waybillPage = new Views.Pages.WaybillPage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -56,6 +58,7 @@ namespace ElectronicsShop
                 clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "[dbo].[Client]", "ORDER BY ClientId ASC");
                 checkPage.CheckViewModel.CheckDataTable = await checkPage.CheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[Check]", "ORDER BY CheckId ASC");
                 supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
+                waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
             }
             catch (Exception ex)
             {
@@ -85,6 +88,9 @@ namespace ElectronicsShop
 
                 await supplierPage.SupplierDataBaseService.UpdateDataBase(supplierPage.SupplierViewModel.SupplierDataTable);
                 supplierPage.SupplierDataBaseService.UpdateDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
+
+                await waybillPage.WaybillDataBaseService.UpdateDataBase(waybillPage.WaybillViewModel.WaybillDataTable);
+                waybillPage.WaybillDataBaseService.UpdateDataTable(waybillPage.WaybillViewModel.WaybillDataTable);
             }
             catch (Exception ex)
             {
@@ -113,9 +119,14 @@ namespace ElectronicsShop
             mainViewModel.FrameCurrentPage = checkPage;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonSupplier_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = supplierPage;
+        }
+
+        private void ButtonWaybill_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = waybillPage;
         }
     }
 }
