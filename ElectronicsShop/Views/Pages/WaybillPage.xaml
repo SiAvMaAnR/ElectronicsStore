@@ -27,6 +27,9 @@
             </Style.Setters>
         </Style>
 
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell}" x:Key="ClickCell">
+            <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -37,7 +40,7 @@
 
 
         <Grid Grid.Column="0">
-            <DataGrid  ItemsSource="{Binding WaybillDataTable.DefaultView}" AutoGenerateColumns="False">
+            <DataGrid x:Name="WaybillDataGrid" ItemsSource="{Binding WaybillDataTable.DefaultView}" AutoGenerateColumns="False">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridCell}">
                         <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
@@ -67,7 +70,7 @@
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Дата" Binding="{Binding Date, StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Поставщик" Binding="{Binding SupplierId}"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Поставщик" Binding="{Binding SupplierId}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

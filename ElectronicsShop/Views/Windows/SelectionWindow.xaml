@@ -5,7 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicsShop.Views.Windows"
         mc:Ignorable="d"
-        Title="SelectionWindow" Height="450" Width="800">
+        Title="SelectionWindow" Height="300" Width="500">
+
+    <Window.Resources>
+        <Style TargetType="DataGridCell" x:Key="Cell">
+            <Style.Setters>
+                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontFamily" Value="Arial" />
+            </Style.Setters>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" x:Key ="ColumnDG">
+            <Setter Property="MaxLength" Value="10"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="TestButton">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="FontSize" Value="40"/>
+            </Style.Setters>
+        </Style>
+
+    </Window.Resources>
     <Grid>
         
     </Grid>

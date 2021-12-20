@@ -1,10 +1,13 @@
 ﻿using ElectronicsShop.Services;
 using ElectronicsShop.ViewModels;
+using ElectronicsShop.Views.Windows;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ElectronicsShop.Views.Pages
 {
@@ -81,10 +84,9 @@ namespace ElectronicsShop.Views.Pages
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var dataGridCellTarget = (DataGridCell)sender;
-            MessageBox.Show(dataGridCellTarget.Content.ToString());
-            MessageBox.Show("Пизда");
-            // TODO: Your logic here
+            DataGridCell dataGridCell = (DataGridCell)sender;
+            DataRowView dataRowView =(DataRowView)dataGridCell.DataContext;
+            dataRowView["SupplierId"] = 8;
         }
     }
 }

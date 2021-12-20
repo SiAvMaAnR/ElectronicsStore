@@ -27,6 +27,9 @@
             </Style.Setters>
         </Style>
 
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell}" x:Key="ClickCell">
+            <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
