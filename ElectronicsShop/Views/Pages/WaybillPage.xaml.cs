@@ -82,11 +82,27 @@ namespace ElectronicsShop.Views.Pages
             }
         }
 
+
+        private DataTable selectionDataTable = new DataTable();
+
+        public void SetDataTable(DataTable dataTable)
+        {
+            selectionDataTable = dataTable;
+        }
+
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            string field = "SupplierId";
+
             DataGridCell dataGridCell = (DataGridCell)sender;
-            DataRowView dataRowView =(DataRowView)dataGridCell.DataContext;
-            dataRowView["SupplierId"] = 8;
+            DataRowView dataRowView = null;
+            try
+            {
+                dataRowView = (DataRowView)dataGridCell.DataContext;
+                SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
+                selectionWindow.ShowDialog();
+            }
+            catch { }
         }
     }
 }

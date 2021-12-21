@@ -58,10 +58,7 @@
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Дата" Binding="{Binding Date, StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}" IsReadOnly="True"/>
-                    <!--<DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Дата" Binding="{Binding Date}" IsReadOnly="True"/>-->
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Id Клиента" Binding="{Binding ClientId}"/>
-
-
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Клиент" Binding="{Binding ClientId}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

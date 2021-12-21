@@ -34,12 +34,13 @@ namespace ElectronicsShop
                 supplierPage = new Views.Pages.SupplierPage(sqlConnection);
                 waybillPage = new Views.Pages.WaybillPage(sqlConnection);
 
+
+
                 DataContext = mainViewModel;
 
                 mainViewModel.FrameCurrentPage = typePage;
 
                 FillDataGrid();
-
             }
             catch (Exception ex)
             {
@@ -47,7 +48,6 @@ namespace ElectronicsShop
                 Environment.Exit(0);
             }
         }
-
 
         private async void FillDataGrid()
         {
@@ -59,6 +59,10 @@ namespace ElectronicsShop
                 checkPage.CheckViewModel.CheckDataTable = await checkPage.CheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[Check]", "ORDER BY CheckId ASC");
                 supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
                 waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
+
+                waybillPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
+                checkPage.SetDataTable(clientPage.ClientViewModel.ClientDataTable);
+
             }
             catch (Exception ex)
             {

@@ -40,7 +40,7 @@
 
 
         <Grid Grid.Column="0">
-            <DataGrid x:Name="WaybillDataGrid" ItemsSource="{Binding WaybillDataTable.DefaultView}" AutoGenerateColumns="False">
+            <DataGrid CanUserAddRows="True" x:Name="WaybillDataGrid" ItemsSource="{Binding WaybillDataTable.DefaultView}" AutoGenerateColumns="False">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridCell}">
                         <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>

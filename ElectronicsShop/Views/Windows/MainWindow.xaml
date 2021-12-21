@@ -105,9 +105,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <Grid Grid.Column="0">
-                    <Button Content="Тип" Style="{StaticResource ButtonPage}" Click="ButtonType_Click"/>
+                    <Button  Content="Тип" Style="{StaticResource ButtonPage}"  Click="ButtonType_Click" Height="40" Margin="5,5,5,0" VerticalAlignment="Top"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -145,6 +144,7 @@
                 <Grid Grid.Column="9">
                     <Button Content="SQL" Style="{StaticResource ButtonPage}"/>
                 </Grid>
+
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">

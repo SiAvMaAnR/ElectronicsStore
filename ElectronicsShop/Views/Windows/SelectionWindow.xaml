@@ -5,29 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicsShop.Views.Windows"
         mc:Ignorable="d"
-        Title="SelectionWindow" Height="300" Width="500">
+        Title="SelectionWindow" Height="300" Width="500" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style TargetType="DataGridCell" x:Key="Cell">
             <Style.Setters>
                 <Setter Property="TextBlock.TextAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="Arial" />
+                
             </Style.Setters>
         </Style>
-        <Style TargetType="{x:Type TextBox}" x:Key ="ColumnDG">
-            <Setter Property="MaxLength" Value="10"/>
+        <Style TargetType="DataGridRow" x:Key="ClickRow">
+            <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
         </Style>
-
-        <Style TargetType="{x:Type Button}" x:Key="TestButton">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="40"/>
-                <Setter Property="FontSize" Value="40"/>
-            </Style.Setters>
-        </Style>
-
     </Window.Resources>
     <Grid>
-        
+        <DataGrid CellStyle="{StaticResource Cell}" 
+                  RowStyle="{StaticResource ClickRow}" 
+                  HorizontalContentAlignment="Center" 
+                  ColumnWidth="*" x:Name="SelectionDataGrid" 
+                  ItemsSource="{Binding SelectionDataTable.DefaultView}" 
+                  AutoGenerateColumns="True" IsReadOnly="True">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="Padding" Value="5 0"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
     </Grid>
 </Window>
