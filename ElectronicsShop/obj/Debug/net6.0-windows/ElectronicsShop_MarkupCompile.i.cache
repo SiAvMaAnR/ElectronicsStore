@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\source\repos\ElectronicsShop\ElectronicsShop\App.xaml
-7-1888813063
+91452066387
 
-25-1141058598
+312097218697
 195-498519203
-Views\Pages\CheckPage.xaml;Views\Pages\ClientPage.xaml;Views\Pages\SupplierPage.xaml;Views\Pages\TypePage.xaml;Views\Pages\WaybillPage.xaml;Views\Windows\MainWindow.xaml;Views\Windows\SelectionWindow.xaml;
+Views\Pages\CheckPage.xaml;Views\Pages\ClientPage.xaml;Views\Pages\ManufacturerPage.xaml;Views\Pages\ProductPage.xaml;Views\Pages\SupplierPage.xaml;Views\Pages\TypePage.xaml;Views\Pages\WaybillPage.xaml;Views\Windows\MainWindow.xaml;Views\Windows\SelectionWindow.xaml;
 
 False
 

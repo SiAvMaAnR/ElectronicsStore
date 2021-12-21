@@ -89,15 +89,7 @@ namespace ElectronicsShop.Views.Pages
         {
             string field = "ClientId";
 
-            DataGridCell dataGridCell = (DataGridCell)sender;
-            DataRowView dataRowView = null;
-            try
-            {
-                dataRowView = (DataRowView)dataGridCell.DataContext;
-                SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
-                selectionWindow.ShowDialog();
-            }
-            catch { }
+            CheckDataBaseService.CellSelected(selectionDataTable, field,sender);
         }
     }
 }

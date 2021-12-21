@@ -94,15 +94,7 @@ namespace ElectronicsShop.Views.Pages
         {
             string field = "SupplierId";
 
-            DataGridCell dataGridCell = (DataGridCell)sender;
-            DataRowView dataRowView = null;
-            try
-            {
-                dataRowView = (DataRowView)dataGridCell.DataContext;
-                SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
-                selectionWindow.ShowDialog();
-            }
-            catch { }
+            WaybillDataBaseService.CellSelected(selectionDataTable, field,sender);
         }
     }
 }

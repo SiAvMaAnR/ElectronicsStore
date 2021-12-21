@@ -41,11 +41,6 @@
 
         <Grid Grid.Column="0">
             <DataGrid CanUserAddRows="True" x:Name="WaybillDataGrid" ItemsSource="{Binding WaybillDataTable.DefaultView}" AutoGenerateColumns="False">
-                <DataGrid.Resources>
-                    <Style TargetType="{x:Type DataGridCell}">
-                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
-                    </Style>
-                </DataGrid.Resources>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>

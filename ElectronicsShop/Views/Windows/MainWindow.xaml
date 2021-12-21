@@ -126,11 +126,11 @@
                 </Grid>
 
                 <Grid Grid.Column="5">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Производ." Style="{StaticResource ButtonPage}" Click="ButtonManufacturer_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="6">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Товар" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="7">
@@ -142,7 +142,7 @@
                 </Grid>
 
                 <Grid Grid.Column="9">
-                    <Button Content="SQL" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Еще" Style="{StaticResource ButtonPage}"/>
                 </Grid>
 
             </Grid>

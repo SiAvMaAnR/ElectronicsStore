@@ -17,6 +17,8 @@ namespace ElectronicsShop
         private Views.Pages.CheckPage checkPage;
         private Views.Pages.SupplierPage supplierPage;
         private Views.Pages.WaybillPage waybillPage;
+        private Views.Pages.ManufacturerPage manufacturerPage;
+        private Views.Pages.ProductPage productPage;
 
         public MainWindow()
         {
@@ -33,8 +35,8 @@ namespace ElectronicsShop
                 checkPage = new Views.Pages.CheckPage(sqlConnection);
                 supplierPage = new Views.Pages.SupplierPage(sqlConnection);
                 waybillPage = new Views.Pages.WaybillPage(sqlConnection);
-
-
+                manufacturerPage = new Views.Pages.ManufacturerPage(sqlConnection);
+                productPage = new Views.Pages.ProductPage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -59,10 +61,12 @@ namespace ElectronicsShop
                 checkPage.CheckViewModel.CheckDataTable = await checkPage.CheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[Check]", "ORDER BY CheckId ASC");
                 supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
                 waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
+                manufacturerPage.ManufacturerViewModel.ManufacturerDataTable = await manufacturerPage.ManufacturerDataBaseService.GetDataTable(sqlConnection, "[dbo].[Manufacturer]", "ORDER BY ManufacturerId ASC");
+                productPage.ProductViewModel.ProductDataTable = await productPage.ProductDataBaseService.GetDataTable(sqlConnection, "[dbo].[Product]", "ORDER BY ProductId ASC");
 
                 waybillPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
                 checkPage.SetDataTable(clientPage.ClientViewModel.ClientDataTable);
-
+                productPage.SetDataTable(typePage.TypeViewModel.TypeDataTable, manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
             }
             catch (Exception ex)
             {
@@ -95,6 +99,12 @@ namespace ElectronicsShop
 
                 await waybillPage.WaybillDataBaseService.UpdateDataBase(waybillPage.WaybillViewModel.WaybillDataTable);
                 waybillPage.WaybillDataBaseService.UpdateDataTable(waybillPage.WaybillViewModel.WaybillDataTable);
+
+                await manufacturerPage.ManufacturerDataBaseService.UpdateDataBase(manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
+                manufacturerPage.ManufacturerDataBaseService.UpdateDataTable(manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
+
+                await productPage.ProductDataBaseService.UpdateDataBase(productPage.ProductViewModel.ProductDataTable);
+                productPage.ProductDataBaseService.UpdateDataTable(productPage.ProductViewModel.ProductDataTable);
             }
             catch (Exception ex)
             {
@@ -131,6 +141,16 @@ namespace ElectronicsShop
         private void ButtonWaybill_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = waybillPage;
+        }
+
+        private void ButtonManufacturer_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = manufacturerPage;
+        }
+
+        private void ButtonProduct_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = productPage;
         }
     }
 }

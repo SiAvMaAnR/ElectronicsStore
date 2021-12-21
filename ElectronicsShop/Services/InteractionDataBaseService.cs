@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ElectronicsShop.Views.Windows;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ElectronicsShop.Services
 {
@@ -75,6 +77,20 @@ namespace ElectronicsShop.Services
                 SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
                 await command.ExecuteNonQueryAsync();
             });
+        }
+
+
+        public void CellSelected(DataTable selectionDataTable,string field, object sender)
+        {
+            DataGridCell dataGridCell = (DataGridCell)sender;
+            DataRowView dataRowView = null;
+            try
+            {
+                dataRowView = (DataRowView)dataGridCell.DataContext;
+                SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
+                selectionWindow.ShowDialog();
+            }
+            catch { }
         }
     }
 }

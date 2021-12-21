@@ -20,8 +20,7 @@ namespace ElectronicsShop.Services
                 [WaybillNumber] NVARCHAR(30) NOT NULL UNIQUE NONCLUSTERED,
                 [Description] NVARCHAR (200) NULL,
                 [Date]  DATETIME DEFAULT SYSDATETIME() NOT NULL,
-                [SupplierId] INT REFERENCES [dbo].[Supplier] ([SupplierId]) ON DELETE CASCADE,
-                );";
+                [SupplierId] INT NOT NULL REFERENCES [dbo].[Supplier] ([SupplierId]) ON DELETE CASCADE);";
 
 
                 SqlCommand command = new SqlCommand(sqlScript, sqlConnection);

@@ -18,8 +18,7 @@ namespace ElectronicsShop.Services
                 @$"CREATE TABLE [dbo].[Supplier] (
 	            [SupplierId] INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
 	            [Name] NVARCHAR(40) NOT NULL UNIQUE NONCLUSTERED,
-	            [PhoneNumber] NVARCHAR(25) NULL
-                );";
+	            [PhoneNumber] NVARCHAR(25) NULL);";
 
 
                 SqlCommand command = new SqlCommand(sqlScript, sqlConnection);

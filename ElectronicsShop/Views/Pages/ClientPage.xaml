@@ -47,14 +47,14 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding ClientId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Имя" Binding="{Binding FirstName}" >
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Фамилия" Binding="{Binding LastName}" >
                         <DataGridTextColumn.EditingElementStyle>
                             <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="MaxLength" Value="40"/>
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Фамилия" Binding="{Binding LastName}" >
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Имя" Binding="{Binding FirstName}" >
                         <DataGridTextColumn.EditingElementStyle>
                             <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="MaxLength" Value="40"/>

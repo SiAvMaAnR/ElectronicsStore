@@ -19,8 +19,7 @@ namespace ElectronicsShop.Services
 	            [CheckId] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	            [CheckNumber] NVARCHAR(30) NOT NULL UNIQUE NONCLUSTERED,
 	            [Date] DATETIME NOT NULL DEFAULT SYSDATETIME(),
-	            [ClientId] INT NOT NULL REFERENCES dbo.Client(ClientId) ON DELETE CASCADE
-                );";
+	            [ClientId] INT NOT NULL REFERENCES dbo.Client(ClientId) ON DELETE CASCADE);";
 
 
                 SqlCommand command = new SqlCommand(sqlScript, sqlConnection);

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicsShop.Views.Windows"
         mc:Ignorable="d"
-        Title="SelectionWindow" Height="300" Width="500" WindowStartupLocation="CenterScreen">
+        Title="SelectionWindow" Height="500" Width="700" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style TargetType="DataGridCell" x:Key="Cell">
