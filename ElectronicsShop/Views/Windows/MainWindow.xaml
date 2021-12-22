@@ -134,15 +134,15 @@
                 </Grid>
 
                 <Grid Grid.Column="7">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Товар в накладной" Style="{StaticResource ButtonPage}" Click="ButtonProductInWaybill_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="8">
-                    <Button Content="Client" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Товар в счете" Style="{StaticResource ButtonPage}" Click="ButtonProductInCheck_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="9">
-                    <Button Content="Еще" Style="{StaticResource ButtonPage}"/>
+                    <Button Content="Еще" Style="{StaticResource ButtonPage}" Click="ButtonOther_Click"/>
                 </Grid>
 
             </Grid>

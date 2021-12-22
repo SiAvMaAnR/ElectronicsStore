@@ -19,6 +19,8 @@ namespace ElectronicsShop
         private Views.Pages.WaybillPage waybillPage;
         private Views.Pages.ManufacturerPage manufacturerPage;
         private Views.Pages.ProductPage productPage;
+        private Views.Pages.ProductInCheckPage productInCheck;
+        private Views.Pages.ProductInWaybillPage productInWaybill;
 
         public MainWindow()
         {
@@ -37,6 +39,8 @@ namespace ElectronicsShop
                 waybillPage = new Views.Pages.WaybillPage(sqlConnection);
                 manufacturerPage = new Views.Pages.ManufacturerPage(sqlConnection);
                 productPage = new Views.Pages.ProductPage(sqlConnection);
+                productInCheck = new Views.Pages.ProductInCheckPage(sqlConnection);
+                productInWaybill = new Views.Pages.ProductInWaybillPage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -63,10 +67,14 @@ namespace ElectronicsShop
                 waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
                 manufacturerPage.ManufacturerViewModel.ManufacturerDataTable = await manufacturerPage.ManufacturerDataBaseService.GetDataTable(sqlConnection, "[dbo].[Manufacturer]", "ORDER BY ManufacturerId ASC");
                 productPage.ProductViewModel.ProductDataTable = await productPage.ProductDataBaseService.GetDataTable(sqlConnection, "[dbo].[Product]", "ORDER BY ProductId ASC");
+                productInCheck.ProductInCheckViewModel.ProductInCheckDataTable = await productInCheck.ProductInCheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInCheck]", "ORDER BY ProductInCheckId ASC");
+                productInWaybill.ProductInWaybillViewModel.ProductInWaybillDataTable = await productInWaybill.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
 
                 waybillPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
                 checkPage.SetDataTable(clientPage.ClientViewModel.ClientDataTable);
                 productPage.SetDataTable(typePage.TypeViewModel.TypeDataTable, manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
+                productInCheck.SetDataTable(productPage.ProductViewModel.ProductDataTable, checkPage.CheckViewModel.CheckDataTable);
+                productInWaybill.SetDataTable(productPage.ProductViewModel.ProductDataTable, waybillPage.WaybillViewModel.WaybillDataTable);
             }
             catch (Exception ex)
             {
@@ -105,6 +113,12 @@ namespace ElectronicsShop
 
                 await productPage.ProductDataBaseService.UpdateDataBase(productPage.ProductViewModel.ProductDataTable);
                 productPage.ProductDataBaseService.UpdateDataTable(productPage.ProductViewModel.ProductDataTable);
+
+                await productInWaybill.ProductInWaybillDataBaseService.UpdateDataBase(productInWaybill.ProductInWaybillViewModel.ProductInWaybillDataTable);
+                productInWaybill.ProductInWaybillDataBaseService.UpdateDataTable(productInWaybill.ProductInWaybillViewModel.ProductInWaybillDataTable);
+
+                await productInCheck.ProductInCheckDataBaseService.UpdateDataBase(productInCheck.ProductInCheckViewModel.ProductInCheckDataTable);
+                productInCheck.ProductInCheckDataBaseService.UpdateDataTable(productInCheck.ProductInCheckViewModel.ProductInCheckDataTable);
             }
             catch (Exception ex)
             {
@@ -151,6 +165,21 @@ namespace ElectronicsShop
         private void ButtonProduct_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = productPage;
+        }
+
+        private void ButtonProductInWaybill_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = productInWaybill;
+        }
+
+        private void ButtonProductInCheck_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = productInCheck;
+        }
+
+        private void ButtonOther_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

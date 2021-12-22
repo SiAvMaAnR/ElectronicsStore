@@ -13,7 +13,7 @@
                 <Setter Property="TextBlock.TextAlignment" Value="Center" />
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="Arial" />
-                
+
             </Style.Setters>
         </Style>
         <Style TargetType="DataGridRow" x:Key="ClickRow">
@@ -21,12 +21,14 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid CellStyle="{StaticResource Cell}" 
+        <DataGrid CanUserAddRows="False"
+                  CellStyle="{StaticResource Cell}" 
                   RowStyle="{StaticResource ClickRow}" 
                   HorizontalContentAlignment="Center" 
                   ColumnWidth="*" x:Name="SelectionDataGrid" 
                   ItemsSource="{Binding SelectionDataTable.DefaultView}" 
-                  AutoGenerateColumns="True" IsReadOnly="True">
+                  AutoGenerateColumns="True"
+                  IsReadOnly="True">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>

@@ -53,6 +53,7 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding ProductId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Тип" Binding="{Binding TypeId}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Модель" Binding="{Binding Model}" >
                         <DataGridTextColumn.EditingElementStyle>
                             <Style TargetType="{x:Type TextBox}">
@@ -60,6 +61,8 @@
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="30*" Header="Производитель" Binding="{Binding ManufacturerId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Год" Binding="{Binding Year}"/>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Цвет" Binding="{Binding Color}" >
                         <DataGridTextColumn.EditingElementStyle>
                             <Style TargetType="{x:Type TextBox}">
@@ -68,11 +71,8 @@
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Цена" Binding="{Binding Cost}"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Год" Binding="{Binding Year}"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Масса" Binding="{Binding Weight}"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Гарантия(мес)" Binding="{Binding MonthsWarranty}"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Тип" Binding="{Binding TypeId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="30*" Header="Производитель" Binding="{Binding ManufacturerId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Масса" Binding="{Binding Weight}"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="Гарантия(мес)" Binding="{Binding MonthsWarranty}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
