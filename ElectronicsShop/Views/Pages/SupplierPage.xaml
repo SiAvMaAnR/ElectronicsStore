@@ -54,6 +54,7 @@
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="Город" Binding="{Binding City}" />
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="№ Телефона" Binding="{Binding PhoneNumber}" />
                 </DataGrid.Columns>
             </DataGrid>
