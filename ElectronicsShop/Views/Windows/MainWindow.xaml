@@ -105,25 +105,30 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
                 <Grid Grid.Column="0">
-                    <Button  Content="Тип" Style="{StaticResource ButtonPage}"  Click="ButtonType_Click" Height="40" Margin="5,5,5,0" VerticalAlignment="Top"/>
+                    <Button Content="Поставщики" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
-                    <Button Content="Клиент" Style="{StaticResource ButtonPage}" Click="ButtonClient_Click"/>
+                    <Button Content="Клиенты" Style="{StaticResource ButtonPage}" Click="ButtonClient_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="2">
+                    <Button  Content="Тип" Style="{StaticResource ButtonPage}"  Click="ButtonType_Click"/>
+                </Grid>
+
+                
+
+                <Grid Grid.Column="3">
                     <Button Content="Чек" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
                 </Grid>
 
-                <Grid Grid.Column="3">
+                <Grid Grid.Column="4">
                     <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonWaybill_Click"/>
                 </Grid>
 
-                <Grid Grid.Column="4">
-                    <Button Content="Поставщик" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>
-                </Grid>
+                
 
                 <Grid Grid.Column="5">
                     <Button Content="Производ." Style="{StaticResource ButtonPage}" Click="ButtonManufacturer_Click"/>
@@ -140,11 +145,6 @@
                 <Grid Grid.Column="8">
                     <Button Content="Товар в счете" Style="{StaticResource ButtonPage}" Click="ButtonProductInCheck_Click"/>
                 </Grid>
-
-                <Grid Grid.Column="9">
-                    <Button Content="Еще" Style="{StaticResource ButtonPage}" Click="ButtonOther_Click"/>
-                </Grid>
-
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
