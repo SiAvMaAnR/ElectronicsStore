@@ -47,20 +47,8 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding SupplierId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Имя" Binding="{Binding Name}" >
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="MaxLength" Value="40"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="Город" Binding="{Binding City}" >
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="MaxLength" Value="40"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Название" Binding="{Binding Name}" />
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="Город" Binding="{Binding City}" />
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="№ Телефона" Binding="{Binding PhoneNumber}" />
                 </DataGrid.Columns>
             </DataGrid>
@@ -68,25 +56,7 @@
 
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Button Content="Truncate" Style="{StaticResource TestButton}"  Click="Button_Click"/>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Button Content="Create" Style="{StaticResource TestButton}" Click="Button_Click_1"/>
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <Button Content="Drop" Style="{StaticResource TestButton}" Click="Button_Click_2"/>
-            </Grid>
+            
         </Grid>
     </Grid>
 </Page>

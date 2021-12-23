@@ -22,60 +22,6 @@ namespace ElectronicsShop.Views.Pages
             ProductInWaybillDataBaseService = new ProductInWaybillDataBaseService(sqlConnection);
         }
 
-        //Truncate
-        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).Truncate(tableName);
-                ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).UpdateDataTable(ProductInWaybillViewModel.ProductInWaybillDataTable);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).sqlConnection.CloseAsync();
-            }
-
-        }
-
-        //CreateTable
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).CreateTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).DropTable(ProductInWaybillDataBaseService.sqlConnection, tableName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductInWaybillDataBaseService)ProductInWaybillDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
 
         private DataTable selectionDataTable = new DataTable();
         private DataTable selectionDataTable1 = new DataTable();

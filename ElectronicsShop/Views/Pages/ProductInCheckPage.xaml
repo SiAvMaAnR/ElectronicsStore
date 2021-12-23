@@ -53,7 +53,7 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding ProductInCheckId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Товар" Binding="{Binding ProductId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Товар" Binding="{Binding ProductInStorageId}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="20*" Header="Счет" Binding="{Binding CheckId}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Количество" Binding="{Binding Amount}"/>
                 </DataGrid.Columns>
@@ -62,25 +62,6 @@
 
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Button Content="Truncate" Style="{StaticResource TestButton}"  Click="Button_Click"/>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Button Content="Create" Style="{StaticResource TestButton}" Click="Button_Click_1"/>
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <Button Content="Drop" Style="{StaticResource TestButton}" Click="Button_Click_2"/>
-            </Grid>
         </Grid>
     </Grid>
 </Page>

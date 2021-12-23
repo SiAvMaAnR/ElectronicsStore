@@ -32,60 +32,7 @@ namespace ElectronicsShop.Views.Pages
             ProductInCheckDataBaseService = new ProductInCheckDataBaseService(sqlConnection);
         }
 
-        //Truncate
-        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).Truncate(tableName);
-                ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).UpdateDataTable(ProductInCheckViewModel.ProductInCheckDataTable);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).sqlConnection.CloseAsync();
-            }
-
-        }
-
-        //CreateTable
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).CreateTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).DropTable(ProductInCheckDataBaseService.sqlConnection, tableName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductInCheckDataBaseService)ProductInCheckDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
+        
 
         private DataTable selectionDataTable = new DataTable();
         private DataTable selectionDataTable1 = new DataTable();
@@ -98,7 +45,7 @@ namespace ElectronicsShop.Views.Pages
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string field = "ProductId";
+            string field = "ProductInStorageId";
 
             ProductInCheckDataBaseService.CellSelected(selectionDataTable, field, sender);
         }

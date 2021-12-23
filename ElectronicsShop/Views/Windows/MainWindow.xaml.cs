@@ -1,8 +1,8 @@
 ﻿using ElectronicsShop.ViewModels;
 using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ElectronicsShop
@@ -19,15 +19,15 @@ namespace ElectronicsShop
         private Views.Pages.WaybillPage waybillPage;
         private Views.Pages.ManufacturerPage manufacturerPage;
         private Views.Pages.ProductPage productPage;
-        private Views.Pages.ProductInCheckPage productInCheck;
-        private Views.Pages.ProductInWaybillPage productInWaybill;
+        private Views.Pages.ProductInCheckPage productInCheckPage;
+        private Views.Pages.ProductInWaybillPage productInWaybillPage;
+        private Views.Pages.ProductInStoragePage productInStoragePage;
 
         public MainWindow()
         {
             try
             {
                 InitializeComponent();
-
                 sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDB"].ConnectionString);
 
                 mainViewModel = new MainViewModel();
@@ -39,8 +39,9 @@ namespace ElectronicsShop
                 waybillPage = new Views.Pages.WaybillPage(sqlConnection);
                 manufacturerPage = new Views.Pages.ManufacturerPage(sqlConnection);
                 productPage = new Views.Pages.ProductPage(sqlConnection);
-                productInCheck = new Views.Pages.ProductInCheckPage(sqlConnection);
-                productInWaybill = new Views.Pages.ProductInWaybillPage(sqlConnection);
+                productInCheckPage = new Views.Pages.ProductInCheckPage(sqlConnection);
+                productInWaybillPage = new Views.Pages.ProductInWaybillPage(sqlConnection);
+                productInStoragePage = new Views.Pages.ProductInStoragePage(sqlConnection);
 
                 DataContext = mainViewModel;
 
@@ -67,14 +68,16 @@ namespace ElectronicsShop
                 waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
                 manufacturerPage.ManufacturerViewModel.ManufacturerDataTable = await manufacturerPage.ManufacturerDataBaseService.GetDataTable(sqlConnection, "[dbo].[Manufacturer]", "ORDER BY ManufacturerId ASC");
                 productPage.ProductViewModel.ProductDataTable = await productPage.ProductDataBaseService.GetDataTable(sqlConnection, "[dbo].[Product]", "ORDER BY ProductId ASC");
-                productInCheck.ProductInCheckViewModel.ProductInCheckDataTable = await productInCheck.ProductInCheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInCheck]", "ORDER BY ProductInCheckId ASC");
-                productInWaybill.ProductInWaybillViewModel.ProductInWaybillDataTable = await productInWaybill.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
+                productInCheckPage.ProductInCheckViewModel.ProductInCheckDataTable = await productInCheckPage.ProductInCheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInCheck]", "ORDER BY ProductInCheckId ASC");
+                productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable = await productInWaybillPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
+                productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable = await productInStoragePage.ProductInStorageDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInStorage]", "ORDER BY ProductInStorageId ASC");
 
                 waybillPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
+                productInStoragePage.SetDataTable(productPage.ProductViewModel.ProductDataTable);
                 checkPage.SetDataTable(clientPage.ClientViewModel.ClientDataTable);
                 productPage.SetDataTable(typePage.TypeViewModel.TypeDataTable, manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
-                productInCheck.SetDataTable(productPage.ProductViewModel.ProductDataTable, checkPage.CheckViewModel.CheckDataTable);
-                productInWaybill.SetDataTable(productPage.ProductViewModel.ProductDataTable, waybillPage.WaybillViewModel.WaybillDataTable);
+                productInCheckPage.SetDataTable(productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable, checkPage.CheckViewModel.CheckDataTable);
+                productInWaybillPage.SetDataTable(productPage.ProductViewModel.ProductDataTable, waybillPage.WaybillViewModel.WaybillDataTable);
             }
             catch (Exception ex)
             {
@@ -114,11 +117,29 @@ namespace ElectronicsShop
                 await productPage.ProductDataBaseService.UpdateDataBase(productPage.ProductViewModel.ProductDataTable);
                 productPage.ProductDataBaseService.UpdateDataTable(productPage.ProductViewModel.ProductDataTable);
 
-                await productInWaybill.ProductInWaybillDataBaseService.UpdateDataBase(productInWaybill.ProductInWaybillViewModel.ProductInWaybillDataTable);
-                productInWaybill.ProductInWaybillDataBaseService.UpdateDataTable(productInWaybill.ProductInWaybillViewModel.ProductInWaybillDataTable);
+                await productInStoragePage.ProductInStorageDataBaseService.UpdateDataBase(productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable);
+                productInStoragePage.ProductInStorageDataBaseService.UpdateDataTable(productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable);
 
-                await productInCheck.ProductInCheckDataBaseService.UpdateDataBase(productInCheck.ProductInCheckViewModel.ProductInCheckDataTable);
-                productInCheck.ProductInCheckDataBaseService.UpdateDataTable(productInCheck.ProductInCheckViewModel.ProductInCheckDataTable);
+                foreach (DataRow row in productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable.Rows)
+                {
+                    if (decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
+                    {
+                        row["TotalCost"] = Cost * Amount;
+                    }
+                }
+                await productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataBase(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
+                productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataTable(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
+
+
+                foreach (DataRow row in productInCheckPage.ProductInCheckViewModel.ProductInCheckDataTable.Rows)
+                {
+                    if (decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
+                    {
+                        row["TotalCost"] = Cost * Amount;
+                    }
+                }
+                await productInCheckPage.ProductInCheckDataBaseService.UpdateDataBase(productInCheckPage.ProductInCheckViewModel.ProductInCheckDataTable);
+                productInCheckPage.ProductInCheckDataBaseService.UpdateDataTable(productInCheckPage.ProductInCheckViewModel.ProductInCheckDataTable);
             }
             catch (Exception ex)
             {
@@ -169,17 +190,17 @@ namespace ElectronicsShop
 
         private void ButtonProductInWaybill_Click(object sender, RoutedEventArgs e)
         {
-            mainViewModel.FrameCurrentPage = productInWaybill;
+            mainViewModel.FrameCurrentPage = productInWaybillPage;
         }
 
         private void ButtonProductInCheck_Click(object sender, RoutedEventArgs e)
         {
-            mainViewModel.FrameCurrentPage = productInCheck;
+            mainViewModel.FrameCurrentPage = productInCheckPage;
         }
 
-        private void ButtonOther_Click(object sender, RoutedEventArgs e)
+        private void ButtonProductInStorage_Click(object sender, RoutedEventArgs e)
         {
-
+            mainViewModel.FrameCurrentPage = productInStoragePage;
         }
     }
 }

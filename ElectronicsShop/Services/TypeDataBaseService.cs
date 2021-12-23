@@ -14,19 +14,5 @@ namespace ElectronicsShop.Models
         {
         }
 
-        public async Task CreateTable()
-        {
-            await Task.Run(async () =>
-            {
-                string sqlScript =
-                @$"CREATE TABLE [dbo].[Type] (
-                [TypeId] INT IDENTITY (1, 1) PRIMARY KEY CLUSTERED NOT NULL ,
-                [Name] NVARCHAR (40) UNIQUE NONCLUSTERED NOT NULL);";
-
-
-                SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
-                await command.ExecuteNonQueryAsync();
-            });
-        }
     }
 }

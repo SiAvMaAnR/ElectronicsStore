@@ -54,34 +54,17 @@
                 
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding ProductInWaybillId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Товар" Binding="{Binding ProductId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="20*" Header="Накладная" Binding="{Binding WaybillId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="10*" Header="Товар" Binding="{Binding ProductId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Стоимость" Binding="{Binding Cost}" />
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Количество" Binding="{Binding Amount}"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="20*" Header="Накладная" Binding="{Binding WaybillId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="25*" Header="Общая Стоимость" Binding="{Binding TotalCost}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Button Content="Truncate" Style="{StaticResource TestButton}"  Click="Button_Click"/>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Button Content="Create" Style="{StaticResource TestButton}" Click="Button_Click_1"/>
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <Button Content="Drop" Style="{StaticResource TestButton}" Click="Button_Click_2"/>
-            </Grid>
         </Grid>
     </Grid>
 </Page>

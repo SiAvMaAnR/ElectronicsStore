@@ -27,61 +27,6 @@ namespace ElectronicsShop.Views.Pages
             WaybillDataBaseService = new WaybillDataBaseService(sqlConnection);
         }
 
-        //Truncate
-        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.OpenAsync();
-                await ((WaybillDataBaseService)WaybillDataBaseService).Truncate(tableName);
-                ((WaybillDataBaseService)WaybillDataBaseService).UpdateDataTable(WaybillViewModel.WaybillDataTable);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.CloseAsync();
-            }
-
-        }
-
-        //CreateTable
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.OpenAsync();
-                await ((WaybillDataBaseService)WaybillDataBaseService).CreateTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.OpenAsync();
-                await ((WaybillDataBaseService)WaybillDataBaseService).DropTable(WaybillDataBaseService.sqlConnection, tableName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((WaybillDataBaseService)WaybillDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
 
         private DataTable selectionDataTable = new DataTable();
 

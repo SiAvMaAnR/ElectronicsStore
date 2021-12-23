@@ -36,62 +36,6 @@ namespace ElectronicsShop.Views.Pages
             ProductDataBaseService = new ProductDataBaseService(sqlConnection);
         }
 
-        //Truncate
-        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductDataBaseService)ProductDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductDataBaseService)ProductDataBaseService).Truncate(tableName);
-                ((ProductDataBaseService)ProductDataBaseService).UpdateDataTable(ProductViewModel.ProductDataTable);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductDataBaseService)ProductDataBaseService).sqlConnection.CloseAsync();
-            }
-
-        }
-
-        //CreateTable
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductDataBaseService)ProductDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductDataBaseService)ProductDataBaseService).CreateTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductDataBaseService)ProductDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ProductDataBaseService)ProductDataBaseService).sqlConnection.OpenAsync();
-                await ((ProductDataBaseService)ProductDataBaseService).DropTable(ProductDataBaseService.sqlConnection, tableName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ProductDataBaseService)ProductDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-
         private DataTable selectionDataTable = new DataTable();
         private DataTable selectionDataTable1 = new DataTable();
 

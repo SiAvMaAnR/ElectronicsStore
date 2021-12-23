@@ -103,6 +103,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
@@ -117,17 +118,13 @@
                     <Button  Content="Тип" Style="{StaticResource ButtonPage}"  Click="ButtonType_Click"/>
                 </Grid>
 
-                
-
                 <Grid Grid.Column="3">
-                    <Button Content="Чек" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
+                    <Button Content="Счет" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="4">
                     <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonWaybill_Click"/>
                 </Grid>
-
-                
 
                 <Grid Grid.Column="5">
                     <Button Content="Производ." Style="{StaticResource ButtonPage}" Click="ButtonManufacturer_Click"/>
@@ -143,6 +140,10 @@
 
                 <Grid Grid.Column="8">
                     <Button Content="Товар в счете" Style="{StaticResource ButtonPage}" Click="ButtonProductInCheck_Click"/>
+                </Grid>
+
+                <Grid Grid.Column="9">
+                    <Button Content="Товар на складе" Style="{StaticResource ButtonPage}" Click="ButtonProductInStorage_Click"/>
                 </Grid>
             </Grid>
 

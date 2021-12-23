@@ -33,59 +33,6 @@ namespace ElectronicsShop.Views.Pages
             ClientDataBaseService = new ClientDataBaseService(sqlConnection);
         }
 
-        //Truncate
-        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.OpenAsync();
-                await ((ClientDataBaseService)ClientDataBaseService).Truncate(tableName);
-                ((ClientDataBaseService)ClientDataBaseService).UpdateDataTable(ClientViewModel.ClientDataTable);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.CloseAsync();
-            }
-
-        }
-
-        //CreateTable
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.OpenAsync();
-                await ((ClientDataBaseService)ClientDataBaseService).CreateTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.OpenAsync();
-                await ((ClientDataBaseService)ClientDataBaseService).DropTable(ClientDataBaseService.sqlConnection, tableName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ClientDataBaseService)ClientDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
+        
     }
 }

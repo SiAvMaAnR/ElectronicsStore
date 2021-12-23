@@ -36,60 +36,7 @@ namespace ElectronicsShop.Views.Pages
             ManufacturerDataBaseService = new ManufacturerDataBaseService(sqlConnection);
         }
 
-        //Truncate
-        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).sqlConnection.OpenAsync();
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).Truncate(tableName);
-                ((ManufacturerDataBaseService)ManufacturerDataBaseService).UpdateDataTable(ManufacturerViewModel.ManufacturerDataTable);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).sqlConnection.CloseAsync();
-            }
-
-        }
-
-        //CreateTable
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).sqlConnection.OpenAsync();
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).CreateTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).sqlConnection.OpenAsync();
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).DropTable(ManufacturerDataBaseService.sqlConnection, tableName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                await ((ManufacturerDataBaseService)ManufacturerDataBaseService).sqlConnection.CloseAsync();
-            }
-        }
+        
 
     }
 }

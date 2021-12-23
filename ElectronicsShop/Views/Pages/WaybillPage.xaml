@@ -50,47 +50,17 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding WaybillId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="№ Накладной" Binding="{Binding WaybillNumber}" >
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="MaxLength" Value="30"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="№ Накладной" Binding="{Binding WaybillNumber}" />
                     <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Поставщик" Binding="{Binding SupplierId}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Дата" Binding="{Binding Date, StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Описание" Binding="{Binding Description}" >
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="MaxLength" Value="200"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="20*" Header="Описание" Binding="{Binding Description}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Button Content="Truncate" Style="{StaticResource TestButton}"  Click="Button_Click"/>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Button Content="Create" Style="{StaticResource TestButton}" Click="Button_Click_1"/>
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <Button Content="Drop" Style="{StaticResource TestButton}" Click="Button_Click_2"/>
-            </Grid>
+            
         </Grid>
     </Grid>
 </Page>

@@ -47,38 +47,15 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding TypeId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="90*" Header="Наименование" Binding="{Binding Name}" >
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="MaxLength" Value="40"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="90*" Header="Наименование" Binding="{Binding Name}" />
+
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Button Content="Truncate" Style="{StaticResource TestButton}"  Click="Button_Click"/>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Button Content="Create" Style="{StaticResource TestButton}" Click="Button_Click_1"/>
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <Button Content="Drop" Style="{StaticResource TestButton}" Click="Button_Click_2"/>
-            </Grid>
+            
         </Grid>
     </Grid>
 </Page>
