@@ -27,7 +27,6 @@ namespace ElectronicsShop.Views.Pages
     {
         public ProductViewModel ProductViewModel = new ProductViewModel();
         public InteractionDataBaseService ProductDataBaseService;
-        private readonly string tableName = "[Product]";
 
         public ProductPage(SqlConnection sqlConnection)
         {

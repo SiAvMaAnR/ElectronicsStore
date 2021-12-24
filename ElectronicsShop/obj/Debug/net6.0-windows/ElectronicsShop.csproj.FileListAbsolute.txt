@@ -49,3 +49,5 @@ D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\P
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\ProductInWaybillPage.baml
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\ProductInStoragePage.g.cs
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\ProductInStoragePage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\CombinedProductPage.g.cs
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\CombinedProductPage.baml
