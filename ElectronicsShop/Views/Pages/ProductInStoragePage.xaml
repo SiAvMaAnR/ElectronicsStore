@@ -12,7 +12,7 @@
         <Style TargetType="DataGridCell" x:Key="Cell">
             <Style.Setters>
                 <Setter Property="TextBlock.TextAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="Arial" />
             </Style.Setters>
         </Style>
@@ -46,7 +46,7 @@
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                         <Setter Property="Padding" Value="5 0"></Setter>
-                        <Setter Property="FontSize" Value="20"></Setter>
+                        <Setter Property="FontSize" Value="18"></Setter>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
 

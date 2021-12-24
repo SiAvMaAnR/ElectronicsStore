@@ -154,11 +154,6 @@ namespace ElectronicsShop
             mainViewModel.FrameCurrentPage = combinedProductPage;
         }
 
-        private void ButtonType_Click(object sender, RoutedEventArgs e)
-        {
-            mainViewModel.FrameCurrentPage = combinedProductPage.typePage;
-        }
-
         private void ButtonClient_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = clientPage;
@@ -178,13 +173,6 @@ namespace ElectronicsShop
         {
             mainViewModel.FrameCurrentPage = waybillPage;
         }
-
-        private void ButtonManufacturer_Click(object sender, RoutedEventArgs e)
-        {
-            mainViewModel.FrameCurrentPage = combinedProductPage.manufacturerPage;
-        }
-
-        
 
         private void ButtonProductInWaybill_Click(object sender, RoutedEventArgs e)
         {
