@@ -92,5 +92,7 @@ namespace ElectronicsShop.Services
             }
             catch { }
         }
+
+        
     }
 }

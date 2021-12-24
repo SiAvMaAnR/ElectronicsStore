@@ -3,6 +3,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace ElectronicsShop
@@ -13,7 +14,7 @@ namespace ElectronicsShop
         private SqlConnection sqlConnection;
 
         private Views.Pages.ClientPage clientPage;
-        
+
         private Views.Pages.SupplierPage supplierPage;
         private Views.Pages.WaybillPage waybillPage;
         private Views.Pages.ProductInWaybillPage productInWaybillPage;
@@ -55,11 +56,6 @@ namespace ElectronicsShop
             }
         }
 
-        private static void Row_Deleted(object sender, DataRowChangeEventArgs e)
-        {
-            MessageBox.Show("");
-        }
-
         private async void FillDataGrid()
         {
             try
@@ -67,12 +63,11 @@ namespace ElectronicsShop
                 await sqlConnection.OpenAsync();
 
                 clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "[dbo].[Client]", "ORDER BY ClientId ASC");
-                clientPage.ClientViewModel.ClientDataTable.RowDeleted += Row_Deleted;
                 supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
                 waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
                 productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable = await productInWaybillPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
                 productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable = await productInStoragePage.ProductInStorageDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInStorage]", "ORDER BY ProductInStorageId ASC");
-                
+
                 combinedProductPage.productPage.ProductViewModel.ProductDataTable = await combinedProductPage.productPage.ProductDataBaseService.GetDataTable(sqlConnection, "[dbo].[Product]", "ORDER BY ProductId ASC");
                 combinedProductPage.typePage.TypeViewModel.TypeDataTable = await combinedProductPage.typePage.TypeDataBaseService.GetDataTable(sqlConnection, "[dbo].[Type]", "ORDER BY TypeId ASC");
                 combinedProductPage.manufacturerPage.ManufacturerViewModel.ManufacturerDataTable = await combinedProductPage.manufacturerPage.ManufacturerDataBaseService.GetDataTable(sqlConnection, "[dbo].[Manufacturer]", "ORDER BY ManufacturerId ASC");
@@ -112,7 +107,7 @@ namespace ElectronicsShop
 
                 await supplierPage.SupplierDataBaseService.UpdateDataBase(supplierPage.SupplierViewModel.SupplierDataTable);
                 supplierPage.SupplierDataBaseService.UpdateDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
-                
+
                 await waybillPage.WaybillDataBaseService.UpdateDataBase(waybillPage.WaybillViewModel.WaybillDataTable);
                 waybillPage.WaybillDataBaseService.UpdateDataTable(waybillPage.WaybillViewModel.WaybillDataTable);
 
@@ -128,27 +123,14 @@ namespace ElectronicsShop
                 await salePage.CheckDataBaseService.UpdateDataBase(salePage.SaleViewModel.CheckDataTable);
                 salePage.CheckDataBaseService.UpdateDataTable(salePage.SaleViewModel.CheckDataTable);
 
-                foreach (DataRow row in productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable.Rows)
-                {
-                    if (decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
-                    {
-                        row["TotalCost"] = Cost * Amount;
-                    }
-                }
+
+                await GetTotalCost(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
                 await productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataBase(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
                 productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataTable(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
 
-                foreach (DataRow row in salePage.SaleViewModel.ProductInCheckDataTable.Rows)
-                {
-                    if (decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
-                    {
-                        row["TotalCost"] = Cost * Amount;
-                    }
-                }
+                await GetTotalCost(salePage.SaleViewModel.ProductInCheckDataTable);
                 await salePage.ProductInCheckDataBaseService.UpdateDataBase(salePage.SaleViewModel.ProductInCheckDataTable);
                 salePage.ProductInCheckDataBaseService.UpdateDataTable(salePage.SaleViewModel.ProductInCheckDataTable);
-
-
             }
             catch (Exception ex)
             {
@@ -193,6 +175,28 @@ namespace ElectronicsShop
         private void ButtonSale_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = salePage;
+        }
+
+
+        public async Task GetTotalCost(DataTable dataTable)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        if ((row.RowState == DataRowState.Modified || row.RowState == DataRowState.Added) && decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
+                        {
+                            row["TotalCost"] = Cost * Amount;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex ?? new Exception("Неизвестная ошибка");
+                }
+            });
         }
     }
 }
