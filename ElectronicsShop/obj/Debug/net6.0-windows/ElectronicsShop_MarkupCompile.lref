@@ -1,10 +1,8 @@
 ﻿
 
-FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\CheckPage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\ClientPage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\CombinedProductPage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\ManufacturerPage.xaml;;
-FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\ProductInCheckPage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\ProductInStoragePage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\ProductInWaybillPage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\ProductPage.xaml;;
@@ -13,4 +11,5 @@ FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\TypePage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\WaybillPage.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Windows\MainWindow.xaml;;
 FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Windows\SelectionWindow.xaml;;
+FD:\source\repos\ElectronicsShop\ElectronicsShop\Views\Pages\SalePage.xaml;;
 

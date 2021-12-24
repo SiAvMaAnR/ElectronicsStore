@@ -1,4 +1,4 @@
-﻿<Page x:Class="ElectronicsShop.Views.Pages.ProductInCheckPage"
+﻿<Page x:Class="ElectronicsShop.Views.Pages.SalePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:ElectronicsShop.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProductInCheck">
+      Title="SalePage">
+
+
 
     <Page.Resources>
         <Style TargetType="DataGridCell" x:Key="Cell">
@@ -16,6 +18,7 @@
                 <Setter Property="FontFamily" Value="Arial" />
             </Style.Setters>
         </Style>
+
         <Style TargetType="{x:Type TextBox}" x:Key ="ColumnDG">
             <Setter Property="MaxLength" Value="10"/>
         </Style>
@@ -33,16 +36,38 @@
         <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell}" x:Key="ClickCell1">
             <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick_1"/>
         </Style>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell}" x:Key="ClickCell2">
+            <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick_2"/>
+        </Style>
     </Page.Resources>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="40*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-
         <Grid Grid.Column="0">
+            <DataGrid CanUserAddRows="False" ItemsSource="{Binding CheckDataTable.DefaultView}" AutoGenerateColumns="False">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        <Setter Property="Padding" Value="5 0"></Setter>
+                        <Setter Property="FontSize" Value="18"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding CheckId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="40*" Header="№ Счета" Binding="{Binding CheckNumber}" />
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="30*" Header="Дата" Binding="{Binding Date, StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="15*" Header="Клиент" Binding="{Binding ClientId}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Column="1">
             <DataGrid CanUserAddRows="False" x:Name="ProductDataGrid" ItemsSource="{Binding ProductInCheckDataTable.DefaultView}" AutoGenerateColumns="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -53,16 +78,27 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding ProductInCheckId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="20*" Header="Товар" Binding="{Binding ProductInStorageId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="20*" Header="Счет" Binding="{Binding CheckId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="20*" Header="Товар" Binding="{Binding ProductInStorageId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell2}" Width="20*" Header="Счет" Binding="{Binding CheckId}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Количество" Binding="{Binding Amount}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1">
-            <Button Content="Добавить" Click="Button_Click"/>
+            <Grid Grid.Row="0">
+                <Button Content="Добавить счет" Click="Button_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Button Content="Добавить товар в счет" Click="Button_Click_1"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

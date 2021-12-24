@@ -7,9 +7,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\Pages\CheckPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Pages\ClientPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,9 +16,6 @@
     <Compile Update="Views\Pages\ManufacturerPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pages\ProductInCheckPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Pages\ProductInStoragePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,6 +23,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pages\ProductPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\SalePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pages\SupplierPage.xaml.cs">
@@ -45,9 +42,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Pages\CheckPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Pages\ClientPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -57,9 +51,6 @@
     <Page Update="Views\Pages\ManufacturerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Pages\ProductInCheckPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Pages\ProductInStoragePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -67,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\ProductPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\SalePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\SupplierPage.xaml">

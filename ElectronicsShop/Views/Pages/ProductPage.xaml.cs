@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace ElectronicsShop.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ProductPage.xaml
-    /// </summary>
     public partial class ProductPage : Page
     {
         public ProductViewModel ProductViewModel = new ProductViewModel();

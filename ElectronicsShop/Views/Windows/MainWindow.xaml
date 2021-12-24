@@ -120,9 +120,11 @@
                 </Grid>
 
                 <Grid Grid.Column="4">
+                    <Button Content="Продажи" Style="{StaticResource ButtonPage}" Click="ButtonSale_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="5">
+                    <!--<Button Content="Поставки" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>-->
                 </Grid>
                 
                 <!--<Grid Grid.Column="5">

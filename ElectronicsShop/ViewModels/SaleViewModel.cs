@@ -7,9 +7,22 @@ using System.Threading.Tasks;
 
 namespace ElectronicsShop.ViewModels
 {
-    public class ProductInCheckViewModel:BaseViewModel
+    public class SaleViewModel : BaseViewModel
     {
-        private DataTable productInCheckDataTable = new DataTable();
+        private DataTable checkDataTable;
+
+        public DataTable CheckDataTable
+        {
+            get { return checkDataTable; }
+            set
+            {
+                checkDataTable = value;
+                OnPropertyChanged(nameof(CheckDataTable));
+            }
+        }
+
+
+        private DataTable productInCheckDataTable;
 
         public DataTable ProductInCheckDataTable
         {

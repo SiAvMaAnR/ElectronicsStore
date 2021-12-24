@@ -19,47 +19,67 @@ using System.Windows.Shapes;
 
 namespace ElectronicsShop.Views.Pages
 {
-    public partial class ProductInCheckPage : Page
+    /// <summary>
+    /// Логика взаимодействия для SalePage.xaml
+    /// </summary>
+    public partial class SalePage : Page
     {
-        public ProductInCheckViewModel ProductInCheckViewModel = new ProductInCheckViewModel();
-        public InteractionDataBaseService ProductInCheckDataBaseService;
-        private readonly string tableName = "[ProductInCheck]";
+        public SaleViewModel SaleViewModel = new SaleViewModel();
 
-        public ProductInCheckPage(SqlConnection sqlConnection)
+        public InteractionDataBaseService CheckDataBaseService;
+        public InteractionDataBaseService ProductInCheckDataBaseService;
+
+        public SalePage(SqlConnection sqlConnection)
         {
             InitializeComponent();
-            DataContext = ProductInCheckViewModel;
+            CheckDataBaseService = new CheckDataBaseService(sqlConnection);
             ProductInCheckDataBaseService = new ProductInCheckDataBaseService(sqlConnection);
+
+            DataContext = SaleViewModel;
         }
 
-        
 
         private DataTable selectionDataTable = new DataTable();
         private DataTable selectionDataTable1 = new DataTable();
+        private DataTable selectionDataTable2 = new DataTable();
 
-        public void SetDataTable(DataTable dataTable, DataTable dataTable1)
+        public void SetDataTable(DataTable dataTable, DataTable dataTable1, DataTable dataTable2)
         {
             selectionDataTable = dataTable;
             selectionDataTable1 = dataTable1;
+            selectionDataTable2 = dataTable2;
         }
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string field = "ProductInStorageId";
+            string field = "ClientId";
 
-            ProductInCheckDataBaseService.CellSelected(selectionDataTable, field, sender);
+            CheckDataBaseService.CellSelected(selectionDataTable, field, sender);
         }
 
         private void DataGridCell_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
-            string field = "CheckId";
+            string field = "ProductInStorageId";
 
             ProductInCheckDataBaseService.CellSelected(selectionDataTable1, field, sender);
         }
 
+
+        private void DataGridCell_MouseDoubleClick_2(object sender, MouseButtonEventArgs e)
+        {
+            string field = "CheckId";
+
+            ProductInCheckDataBaseService.CellSelected(selectionDataTable2, field, sender);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ProductInCheckViewModel.ProductInCheckDataTable.Rows.Add();
+            SaleViewModel.CheckDataTable.Rows.Add();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaleViewModel.ProductInCheckDataTable.Rows.Add();
         }
     }
 }
