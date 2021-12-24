@@ -29,6 +29,7 @@ namespace ElectronicsShop.Views.Pages
         public InteractionDataBaseService CheckDataBaseService;
         public InteractionDataBaseService ProductInCheckDataBaseService;
         private SqlConnection sqlConnection;
+        private int selectedId = 1;
 
         public SalePage(SqlConnection sqlConnection)
         {
@@ -76,20 +77,46 @@ namespace ElectronicsShop.Views.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SaleViewModel.CheckDataTable.Rows.Add();
+            try
+            {
+                SaleViewModel.CheckDataTable.Rows.Add();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SaleViewModel.ProductInCheckDataTable.Rows.Add();
+            try
+            {
+                DataRowCollection dataRowCollection = SaleViewModel.ProductInCheckDataTable.Rows;
+                dataRowCollection.Add();
+                dataRowCollection[dataRowCollection.Count-1]["CheckId"] = selectedId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SaleViewModel.ProductInCheckDataTable = await ProductInCheckDataBaseService.GetDataTable(sqlConnection, 
-                baseSqlScript: "SELECT ProductInCheckId, Amount FROM", 
-                nameDB: "[dbo].[ProductInCheck]", 
-                additionalSqlScript: ";");
+            try
+            {
+                DataGrid dataGrid = (DataGrid)sender;
+                DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
+                selectedId = (int)dataRowView["CheckId"];
+
+                SaleViewModel.ProductInCheckDataTable = await ProductInCheckDataBaseService.GetDataTable(sqlConnection,
+                    nameDB: "[dbo].[ProductInCheck]",
+                    additionalSqlScript: $"WHERE [CheckId] = {selectedId};");
+            }
+            catch
+            {
+
+            }
         }
     }
 }

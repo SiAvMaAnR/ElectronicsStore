@@ -55,6 +55,11 @@ namespace ElectronicsShop
             }
         }
 
+        private static void Row_Deleted(object sender, DataRowChangeEventArgs e)
+        {
+            MessageBox.Show("");
+        }
+
         private async void FillDataGrid()
         {
             try
@@ -62,6 +67,7 @@ namespace ElectronicsShop
                 await sqlConnection.OpenAsync();
 
                 clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "[dbo].[Client]", "ORDER BY ClientId ASC");
+                clientPage.ClientViewModel.ClientDataTable.RowDeleted += Row_Deleted;
                 supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
                 waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
                 productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable = await productInWaybillPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
@@ -106,7 +112,7 @@ namespace ElectronicsShop
 
                 await supplierPage.SupplierDataBaseService.UpdateDataBase(supplierPage.SupplierViewModel.SupplierDataTable);
                 supplierPage.SupplierDataBaseService.UpdateDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
-
+                
                 await waybillPage.WaybillDataBaseService.UpdateDataBase(waybillPage.WaybillViewModel.WaybillDataTable);
                 waybillPage.WaybillDataBaseService.UpdateDataTable(waybillPage.WaybillViewModel.WaybillDataTable);
 
@@ -132,7 +138,6 @@ namespace ElectronicsShop
                 await productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataBase(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
                 productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataTable(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
 
-
                 foreach (DataRow row in salePage.SaleViewModel.ProductInCheckDataTable.Rows)
                 {
                     if (decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
@@ -142,6 +147,8 @@ namespace ElectronicsShop
                 }
                 await salePage.ProductInCheckDataBaseService.UpdateDataBase(salePage.SaleViewModel.ProductInCheckDataTable);
                 salePage.ProductInCheckDataBaseService.UpdateDataTable(salePage.SaleViewModel.ProductInCheckDataTable);
+
+
             }
             catch (Exception ex)
             {

@@ -126,22 +126,6 @@
                 <Grid Grid.Column="5">
                     <!--<Button Content="Поставки" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>-->
                 </Grid>
-                
-                <!--<Grid Grid.Column="5">
-                    <Button Content="Счет" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
-                </Grid>
-
-                <Grid Grid.Column="6">
-                    <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonWaybill_Click"/>
-                </Grid>-->
-
-                <!--<Grid Grid.Column="8">
-                    <Button Content="Товар в накладной" Style="{StaticResource ButtonPage}" Click="ButtonProductInWaybill_Click"/>
-                </Grid>
-
-                <Grid Grid.Column="9">
-                    <Button Content="Товар в счете" Style="{StaticResource ButtonPage}" Click="ButtonProductInCheck_Click"/>
-                </Grid>-->
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
