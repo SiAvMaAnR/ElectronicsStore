@@ -58,5 +58,10 @@ namespace ElectronicsShop.Views.Pages
 
             ProductDataBaseService.CellSelected(selectionDataTable1,field,sender);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ProductViewModel.ProductDataTable.Rows.Add();
+        }
     }
 }

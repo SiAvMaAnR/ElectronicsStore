@@ -37,7 +37,7 @@
 
 
         <Grid Grid.Column="0">
-            <DataGrid  ItemsSource="{Binding ClientDataTable.DefaultView}" AutoGenerateColumns="False">
+            <DataGrid CanUserAddRows="False" ItemsSource="{Binding ClientDataTable.DefaultView}" AutoGenerateColumns="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
@@ -59,7 +59,7 @@
 
 
         <Grid Grid.Column="1">
-           
+            <Button Content="Добавить" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Page>

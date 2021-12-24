@@ -33,5 +33,9 @@ namespace ElectronicsShop.Views.Pages
             SupplierDataBaseService = new SupplierDataBaseService(sqlConnection);
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SupplierViewModel.SupplierDataTable.Rows.Add();
+        }
     }
 }

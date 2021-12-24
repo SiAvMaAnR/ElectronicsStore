@@ -36,7 +36,9 @@ namespace ElectronicsShop.Views.Pages
             ManufacturerDataBaseService = new ManufacturerDataBaseService(sqlConnection);
         }
 
-        
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ManufacturerViewModel.ManufacturerDataTable.Rows.Add();
+        }
     }
 }

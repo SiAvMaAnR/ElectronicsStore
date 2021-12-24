@@ -45,5 +45,10 @@ namespace ElectronicsShop.Views.Pages
 
             ProductInWaybillDataBaseService.CellSelected(selectionDataTable1, field, sender);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ProductInWaybillViewModel.ProductInWaybillDataTable.Rows.Add();
+        }
     }
 }

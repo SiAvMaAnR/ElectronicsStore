@@ -33,6 +33,9 @@ namespace ElectronicsShop.Views.Pages
             ClientDataBaseService = new ClientDataBaseService(sqlConnection);
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ClientViewModel.ClientDataTable.Rows.Add();
+        }
     }
 }

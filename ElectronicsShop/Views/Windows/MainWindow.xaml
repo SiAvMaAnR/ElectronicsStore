@@ -131,7 +131,7 @@
                 </Grid>
 
                 <Grid Grid.Column="6">
-                    <Button Content="Товар" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
+                    <Button Content="Справочник товаров" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="7">

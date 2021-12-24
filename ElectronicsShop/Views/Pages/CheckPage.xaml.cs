@@ -37,5 +37,10 @@ namespace ElectronicsShop.Views.Pages
 
             CheckDataBaseService.CellSelected(selectionDataTable, field,sender);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CheckViewModel.CheckDataTable.Rows.Add();
+        }
     }
 }

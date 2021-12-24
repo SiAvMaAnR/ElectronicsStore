@@ -21,6 +21,9 @@ namespace ElectronicsShop.Views.Pages
             TypeDataBaseService = new TypeDataBaseService(sqlConnection);
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TypeViewModel.TypeDataTable.Rows.Add();
+        }
     }
 }
