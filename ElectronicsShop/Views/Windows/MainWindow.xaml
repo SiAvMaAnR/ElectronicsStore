@@ -100,51 +100,52 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <!--<ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>-->
                 </Grid.ColumnDefinitions>
 
+
                 <Grid Grid.Column="0">
-                    <Button Content="Поставщики" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>
+                    <Button Content="Справочник" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
-                    <Button Content="Клиенты" Style="{StaticResource ButtonPage}" Click="ButtonClient_Click"/>
+                    <Button Content="Склад" Style="{StaticResource ButtonPage}" Click="ButtonProductInStorage_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <Button  Content="Тип" Style="{StaticResource ButtonPage}"  Click="ButtonType_Click"/>
+                    <Button Content="Клиенты" Style="{StaticResource ButtonPage}" Click="ButtonClient_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="3">
-                    <Button Content="Счет" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
+                    <Button Content="Поставщики" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="4">
-                    <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonWaybill_Click"/>
+                    <Button  Content="Тип" Style="{StaticResource ButtonPage}"  Click="ButtonType_Click"/>
                 </Grid>
+
+                <!--<Grid Grid.Column="5">
+                    <Button Content="Счет" Style="{StaticResource ButtonPage}" Click="ButtonCheck_Click"/>
+                </Grid>
+
+                <Grid Grid.Column="6">
+                    <Button Content="Накладная" Style="{StaticResource ButtonPage}" Click="ButtonWaybill_Click"/>
+                </Grid>-->
 
                 <Grid Grid.Column="5">
                     <Button Content="Производ." Style="{StaticResource ButtonPage}" Click="ButtonManufacturer_Click"/>
                 </Grid>
 
-                <Grid Grid.Column="6">
-                    <Button Content="Справочник товаров" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
-                </Grid>
-
-                <Grid Grid.Column="7">
+                <!--<Grid Grid.Column="8">
                     <Button Content="Товар в накладной" Style="{StaticResource ButtonPage}" Click="ButtonProductInWaybill_Click"/>
                 </Grid>
 
-                <Grid Grid.Column="8">
-                    <Button Content="Товар в счете" Style="{StaticResource ButtonPage}" Click="ButtonProductInCheck_Click"/>
-                </Grid>
-
                 <Grid Grid.Column="9">
-                    <Button Content="Товар на складе" Style="{StaticResource ButtonPage}" Click="ButtonProductInStorage_Click"/>
-                </Grid>
+                    <Button Content="Товар в счете" Style="{StaticResource ButtonPage}" Click="ButtonProductInCheck_Click"/>
+                </Grid>-->
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
