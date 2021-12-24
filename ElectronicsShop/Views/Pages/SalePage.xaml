@@ -44,8 +44,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
@@ -59,7 +59,7 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding CheckId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="50" Header="Id" Binding="{Binding CheckId}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="40*" Header="№ Счета" Binding="{Binding CheckNumber}" />
                     <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="30*" Header="Дата" Binding="{Binding Date, StringFormat={}\{0:dd/MM/yyyy HH:mm:ss\}}" IsReadOnly="True"/>
                     <DataGridTextColumn CellStyle="{StaticResource ClickCell}" Width="15*" Header="Клиент" Binding="{Binding ClientId}" IsReadOnly="True"/>
@@ -77,10 +77,12 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="70" Header="Id" Binding="{Binding ProductInCheckId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="20*" Header="Товар" Binding="{Binding ProductInStorageId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource ClickCell2}" Width="20*" Header="Счет" Binding="{Binding CheckId}" IsReadOnly="True"/>
-                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Количество" Binding="{Binding Amount}"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="50" Header="Id" Binding="{Binding ProductInCheckId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell1}" Width="10*" Header="Товар" Binding="{Binding ProductInStorageId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource ClickCell2}" Width="10*" Header="Счет" Binding="{Binding CheckId}" IsReadOnly="True"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="10*" Header="Кол-во" Binding="{Binding Amount}"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Стоимость(₽)" Binding="{Binding Cost}"/>
+                    <DataGridTextColumn CellStyle="{StaticResource Cell}" Width="15*" Header="Итого(₽)" Binding="{Binding TotalCost}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -98,6 +100,10 @@
 
             <Grid Grid.Row="1">
                 <Button Content="Добавить товар в счет" Click="Button_Click_1"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Button Content="Other" Click="Button_Click_2"/>
             </Grid>
         </Grid>
     </Grid>

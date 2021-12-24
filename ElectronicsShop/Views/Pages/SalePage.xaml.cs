@@ -28,6 +28,7 @@ namespace ElectronicsShop.Views.Pages
 
         public InteractionDataBaseService CheckDataBaseService;
         public InteractionDataBaseService ProductInCheckDataBaseService;
+        private SqlConnection sqlConnection;
 
         public SalePage(SqlConnection sqlConnection)
         {
@@ -36,6 +37,7 @@ namespace ElectronicsShop.Views.Pages
             ProductInCheckDataBaseService = new ProductInCheckDataBaseService(sqlConnection);
 
             DataContext = SaleViewModel;
+            this.sqlConnection = sqlConnection;
         }
 
 
@@ -80,6 +82,14 @@ namespace ElectronicsShop.Views.Pages
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SaleViewModel.ProductInCheckDataTable.Rows.Add();
+        }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            SaleViewModel.ProductInCheckDataTable = await ProductInCheckDataBaseService.GetDataTable(sqlConnection, 
+                baseSqlScript: "SELECT ProductInCheckId, Amount FROM", 
+                nameDB: "[dbo].[ProductInCheck]", 
+                additionalSqlScript: ";");
         }
     }
 }

@@ -18,9 +18,9 @@ namespace ElectronicsShop.Services
             this.sqlConnection = sqlConnection;
         }
 
-        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript = "")
+        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript = "", string baseSqlScript = "SELECT * FROM")
         {
-            string sqlScript = $"SELECT * FROM {nameDB} {additionalSqlScript}";
+            string sqlScript = $"{baseSqlScript} {nameDB} {additionalSqlScript}";
 
 
             DataTable dataTable = new DataTable(nameDB);
