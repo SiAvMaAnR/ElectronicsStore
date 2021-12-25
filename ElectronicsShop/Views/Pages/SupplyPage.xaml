@@ -21,6 +21,14 @@
             <Setter Property="MaxLength" Value="10"/>
         </Style>
 
+        <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextBlock">
+            <Style.Setters>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="26"/>
+            </Style.Setters>
+        </Style>
+
         <Style TargetType="{x:Type Button}" x:Key="TestButton">
             <Style.Setters>
                 <Setter Property="FontSize" Value="40"/>
@@ -83,22 +91,27 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Background="#2d2d2f">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="70*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
+                <TextBlock Text="Поставки" Style="{StaticResource TitleTextBlock}"/>
+            </Grid>
+            
+            <Grid Grid.Row="1">
                 <Button Content="Добавить накладную" Click="Button_Click"/>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Button Content="Добавить товар в накладную" Click="Button_Click_1"/>
             </Grid>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
             </Grid>
         </Grid>
     </Grid>
