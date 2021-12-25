@@ -16,13 +16,12 @@ namespace ElectronicsShop
         private Views.Pages.ClientPage clientPage;
 
         private Views.Pages.SupplierPage supplierPage;
-        private Views.Pages.WaybillPage waybillPage;
-        private Views.Pages.ProductInWaybillPage productInWaybillPage;
         private Views.Pages.ProductInStoragePage productInStoragePage;
 
 
         private Views.Pages.CombinedProductPage combinedProductPage;
         private Views.Pages.SalePage salePage;
+        private Views.Pages.SupplyPage supplyPage;
 
 
         public MainWindow()
@@ -36,12 +35,12 @@ namespace ElectronicsShop
 
                 clientPage = new Views.Pages.ClientPage(sqlConnection);
                 supplierPage = new Views.Pages.SupplierPage(sqlConnection);
-                waybillPage = new Views.Pages.WaybillPage(sqlConnection);
-                productInWaybillPage = new Views.Pages.ProductInWaybillPage(sqlConnection);
                 productInStoragePage = new Views.Pages.ProductInStoragePage(sqlConnection);
 
                 combinedProductPage = new Views.Pages.CombinedProductPage(sqlConnection);
                 salePage = new Views.Pages.SalePage(sqlConnection);
+                supplyPage = new Views.Pages.SupplyPage(sqlConnection);
+
 
                 DataContext = mainViewModel;
 
@@ -64,8 +63,6 @@ namespace ElectronicsShop
 
                 clientPage.ClientViewModel.ClientDataTable = await clientPage.ClientDataBaseService.GetDataTable(sqlConnection, "[dbo].[Client]", "ORDER BY ClientId ASC");
                 supplierPage.SupplierViewModel.SupplierDataTable = await supplierPage.SupplierDataBaseService.GetDataTable(sqlConnection, "[dbo].[Supplier]", "ORDER BY SupplierId ASC");
-                waybillPage.WaybillViewModel.WaybillDataTable = await waybillPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
-                productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable = await productInWaybillPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
                 productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable = await productInStoragePage.ProductInStorageDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInStorage]", "ORDER BY ProductInStorageId ASC");
 
                 combinedProductPage.productPage.ProductViewModel.ProductDataTable = await combinedProductPage.productPage.ProductDataBaseService.GetDataTable(sqlConnection, "[dbo].[Product]", "ORDER BY ProductId ASC");
@@ -74,12 +71,13 @@ namespace ElectronicsShop
 
                 salePage.SaleViewModel.CheckDataTable = await salePage.CheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[Check]", "ORDER BY CheckId ASC");
                 salePage.SaleViewModel.ProductInCheckDataTable = await salePage.ProductInCheckDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInCheck]", "ORDER BY ProductInCheckId ASC");
+                supplyPage.SupplyViewModel.WaybillDataTable = await supplyPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
+                supplyPage.SupplyViewModel.ProductInWaybillDataTable = await supplyPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
 
-                waybillPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
                 productInStoragePage.SetDataTable(combinedProductPage.productPage.ProductViewModel.ProductDataTable);
                 combinedProductPage.productPage.SetDataTable(combinedProductPage.typePage.TypeViewModel.TypeDataTable, combinedProductPage.manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
-                productInWaybillPage.SetDataTable(combinedProductPage.productPage.ProductViewModel.ProductDataTable, waybillPage.WaybillViewModel.WaybillDataTable);
-                salePage.SetDataTable(clientPage.ClientViewModel.ClientDataTable, productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable, salePage.SaleViewModel.CheckDataTable);
+                salePage.SetDataTable(clientPage.ClientViewModel.ClientDataTable, productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable);
+                supplyPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable, combinedProductPage.productPage.ProductViewModel.ProductDataTable);
 
             }
             catch (Exception ex)
@@ -108,9 +106,6 @@ namespace ElectronicsShop
                 await supplierPage.SupplierDataBaseService.UpdateDataBase(supplierPage.SupplierViewModel.SupplierDataTable);
                 supplierPage.SupplierDataBaseService.UpdateDataTable(supplierPage.SupplierViewModel.SupplierDataTable);
 
-                await waybillPage.WaybillDataBaseService.UpdateDataBase(waybillPage.WaybillViewModel.WaybillDataTable);
-                waybillPage.WaybillDataBaseService.UpdateDataTable(waybillPage.WaybillViewModel.WaybillDataTable);
-
                 await combinedProductPage.manufacturerPage.ManufacturerDataBaseService.UpdateDataBase(combinedProductPage.manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
                 combinedProductPage.manufacturerPage.ManufacturerDataBaseService.UpdateDataTable(combinedProductPage.manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
 
@@ -123,14 +118,16 @@ namespace ElectronicsShop
                 await salePage.CheckDataBaseService.UpdateDataBase(salePage.SaleViewModel.CheckDataTable);
                 salePage.CheckDataBaseService.UpdateDataTable(salePage.SaleViewModel.CheckDataTable);
 
-
-                await GetTotalCost(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
-                await productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataBase(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
-                productInWaybillPage.ProductInWaybillDataBaseService.UpdateDataTable(productInWaybillPage.ProductInWaybillViewModel.ProductInWaybillDataTable);
-
+                await supplyPage.WaybillDataBaseService.UpdateDataBase(supplyPage.SupplyViewModel.WaybillDataTable);
+                supplyPage.WaybillDataBaseService.UpdateDataTable(supplyPage.SupplyViewModel.WaybillDataTable);
+                
                 await GetTotalCost(salePage.SaleViewModel.ProductInCheckDataTable);
                 await salePage.ProductInCheckDataBaseService.UpdateDataBase(salePage.SaleViewModel.ProductInCheckDataTable);
                 salePage.ProductInCheckDataBaseService.UpdateDataTable(salePage.SaleViewModel.ProductInCheckDataTable);
+
+                await GetTotalCost(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
+                await supplyPage.ProductInWaybillDataBaseService.UpdateDataBase(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
+                supplyPage.ProductInWaybillDataBaseService.UpdateDataTable(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
             }
             catch (Exception ex)
             {
@@ -157,16 +154,6 @@ namespace ElectronicsShop
             mainViewModel.FrameCurrentPage = supplierPage;
         }
 
-        private void ButtonWaybill_Click(object sender, RoutedEventArgs e)
-        {
-            mainViewModel.FrameCurrentPage = waybillPage;
-        }
-
-        private void ButtonProductInWaybill_Click(object sender, RoutedEventArgs e)
-        {
-            mainViewModel.FrameCurrentPage = productInWaybillPage;
-        }
-
         private void ButtonProductInStorage_Click(object sender, RoutedEventArgs e)
         {
             mainViewModel.FrameCurrentPage = productInStoragePage;
@@ -177,6 +164,10 @@ namespace ElectronicsShop
             mainViewModel.FrameCurrentPage = salePage;
         }
 
+        private void ButtonSupply_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.FrameCurrentPage = supplyPage;
+        }
 
         public async Task GetTotalCost(DataTable dataTable)
         {

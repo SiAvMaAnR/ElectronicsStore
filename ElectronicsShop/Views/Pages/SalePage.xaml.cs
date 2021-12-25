@@ -29,7 +29,7 @@ namespace ElectronicsShop.Views.Pages
         public InteractionDataBaseService CheckDataBaseService;
         public InteractionDataBaseService ProductInCheckDataBaseService;
         private SqlConnection sqlConnection;
-        private int selectedId = 1;
+        private int selectedId = 0;
 
         public SalePage(SqlConnection sqlConnection)
         {
@@ -44,13 +44,11 @@ namespace ElectronicsShop.Views.Pages
 
         private DataTable selectionDataTable = new DataTable();
         private DataTable selectionDataTable1 = new DataTable();
-        private DataTable selectionDataTable2 = new DataTable();
 
-        public void SetDataTable(DataTable dataTable, DataTable dataTable1, DataTable dataTable2)
+        public void SetDataTable(DataTable dataTable, DataTable dataTable1)
         {
             selectionDataTable = dataTable;
             selectionDataTable1 = dataTable1;
-            selectionDataTable2 = dataTable2;
         }
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -68,13 +66,6 @@ namespace ElectronicsShop.Views.Pages
         }
 
 
-        private void DataGridCell_MouseDoubleClick_2(object sender, MouseButtonEventArgs e)
-        {
-            string field = "CheckId";
-
-            ProductInCheckDataBaseService.CellSelected(selectionDataTable2, field, sender);
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -91,6 +82,7 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
+                if (selectedId == 0) throw new Exception("Выберите накладную!");
                 DataRowCollection dataRowCollection = SaleViewModel.ProductInCheckDataTable.Rows;
                 dataRowCollection.Add();
                 dataRowCollection[dataRowCollection.Count-1]["CheckId"] = selectedId;

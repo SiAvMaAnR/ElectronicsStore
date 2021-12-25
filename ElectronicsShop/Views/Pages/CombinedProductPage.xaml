@@ -10,13 +10,13 @@
     <Grid>
         <TabControl FontSize="14" FontFamily="Arial">
 
-            <TabItem Header="Справочник товаров" >
+            <TabItem Header="Товары" >
                 <Frame Content="{Binding ProductPage}" NavigationUIVisibility="Hidden"/>
             </TabItem>
-            <TabItem Header="Справочник типов" >
+            <TabItem Header="Типы" >
                 <Frame Content="{Binding TypePage}" NavigationUIVisibility="Hidden"/>
             </TabItem>
-            <TabItem Header="Справочник производителей">
+            <TabItem Header="Производители">
                 <Frame Content="{Binding ManufacturerPage}" NavigationUIVisibility="Hidden"/>
             </TabItem>
         </TabControl>

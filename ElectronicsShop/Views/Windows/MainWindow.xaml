@@ -104,7 +104,7 @@
 
 
                 <Grid Grid.Column="0">
-                    <Button Content="Справочник" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
+                    <Button Content="Справочники" Style="{StaticResource ButtonPage}" Click="ButtonProduct_Click"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -124,7 +124,7 @@
                 </Grid>
 
                 <Grid Grid.Column="5">
-                    <!--<Button Content="Поставки" Style="{StaticResource ButtonPage}" Click="ButtonSupplier_Click"/>-->
+                    <Button Content="Поставки" Style="{StaticResource ButtonPage}" Click="ButtonSupply_Click"/>
                 </Grid>
             </Grid>
 

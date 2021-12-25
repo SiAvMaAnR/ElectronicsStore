@@ -17,7 +17,7 @@ namespace ElectronicsShop.ViewModels
             set
             {
                 checkDataTable = value;
-                OnPropertyChanged(nameof(CheckDataTable));
+                OnPropertyChanged(nameof(checkDataTable));
             }
         }
 
