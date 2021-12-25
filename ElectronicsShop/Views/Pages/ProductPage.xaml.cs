@@ -24,12 +24,14 @@ namespace ElectronicsShop.Views.Pages
     {
         public ProductViewModel ProductViewModel = new ProductViewModel();
         public InteractionDataBaseService ProductDataBaseService;
+        private SqlConnection sqlConnection;
 
         public ProductPage(SqlConnection sqlConnection)
         {
             InitializeComponent();
             DataContext = ProductViewModel;
             ProductDataBaseService = new ProductDataBaseService(sqlConnection);
+            this.sqlConnection = sqlConnection;
         }
 
         private DataTable selectionDataTable = new DataTable();
@@ -52,12 +54,44 @@ namespace ElectronicsShop.Views.Pages
         {
             string field = "ManufacturerId";
 
-            ProductDataBaseService.CellSelected(selectionDataTable1,field,sender);
+            ProductDataBaseService.CellSelected(selectionDataTable1, field, sender);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ProductViewModel.ProductDataTable.Rows.Add();
         }
+
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            await SearchAsync();
+        }
+
+
+        private async Task SearchAsync()
+        {
+            try
+            {
+                string additionalSqlScript = await ProductDataBaseService.GenerateQueryAsync(new List<(string, string)>()
+                {
+                    
+                    ("(SELECT [Name] FROM [dbo].[Type] WHERE [dbo].[Type].TypeId = [dbo].[Product].[TypeId])", ProductViewModel.TypeSearch ),
+                    ("(SELECT [Name] FROM [dbo].[Manufacturer] WHERE [dbo].[Manufacturer].ManufacturerId = [dbo].[Product].[ManufacturerId])", ProductViewModel.ManufacturerSearch ),
+                    ("[Model]", ProductViewModel.ModelSearch ),
+                    ("[Year]", ProductViewModel.YearSearch ),
+                    ("[Color]", ProductViewModel.ColorSearch )
+                });
+
+
+                ProductViewModel.ProductDataTable = await ProductDataBaseService.GetDataTable(sqlConnection,
+                    nameDB: "[dbo].[Product]",
+                    additionalSqlScript: additionalSqlScript + "ORDER BY [ProductId] ASC;");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

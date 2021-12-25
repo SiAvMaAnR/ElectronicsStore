@@ -21,5 +21,18 @@ namespace ElectronicsShop.ViewModels
                 OnPropertyChanged(nameof(typeDataTable));
             }
         }
+
+
+        private string nameSearch = "";
+
+        public string NameSearch
+        {
+            get { return nameSearch; }
+            set
+            {
+                nameSearch = value;
+                OnPropertyChanged(nameof(nameSearch));
+            }
+        }
     }
 }

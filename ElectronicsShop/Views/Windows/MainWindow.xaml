@@ -133,7 +133,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Background="#2d2d2f">
             <Frame Content="{Binding FrameCurrentPage}"  NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>

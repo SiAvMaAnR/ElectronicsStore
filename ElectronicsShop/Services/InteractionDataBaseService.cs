@@ -1,5 +1,6 @@
 ﻿using ElectronicsShop.Views.Windows;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -52,35 +53,13 @@ namespace ElectronicsShop.Services
             });
         }
 
-        public async Task Truncate(string tableName, string additionalSqlScript = "")
-        {
-            await Task.Run(async () =>
-            {
-                string sqlScript = @$"TRUNCATE TABLE {tableName} {additionalSqlScript};";
-                SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
-                await command.ExecuteNonQueryAsync();
-            });
-        }
-
         public void UpdateDataTable(DataTable table)
         {
             table.Clear();
             sqlDataAdapter.Fill(table);
         }
 
-        public async Task DropTable(SqlConnection sqlConnection, string tableName)
-        {
-            await Task.Run(async () =>
-            {
-                string sqlScript = @$"DROP TABLE {tableName};";
-
-                SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
-                await command.ExecuteNonQueryAsync();
-            });
-        }
-
-
-        public void CellSelected(DataTable selectionDataTable,string field, object sender)
+        public void CellSelected(DataTable selectionDataTable, string field, object sender)
         {
             DataGridCell dataGridCell = (DataGridCell)sender;
             DataRowView dataRowView = null;
@@ -93,6 +72,42 @@ namespace ElectronicsShop.Services
             catch { }
         }
 
-        
+        public async Task<string> GenerateQueryAsync(List<(string,string)> queryValues)
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    string additionalSqlScript = "";
+
+
+                    foreach (var item in queryValues)
+                    {
+                        if (!string.IsNullOrEmpty(item.Item2))
+                        {
+                            additionalSqlScript += "WHERE ";
+                            break;
+                        }
+                    }
+
+                    for (int i = 0, j = 0; i < queryValues.Count; i++)
+                    {
+                        if (!string.IsNullOrEmpty(queryValues[i].Item2))
+                        {
+                            if (j != 0) additionalSqlScript += "AND ";
+                            additionalSqlScript += $"{queryValues[i].Item1} LIKE '%{queryValues[i].Item2}%' ";
+                            j++;
+                        }
+                    }
+                    return additionalSqlScript;
+
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                    throw ex ?? new Exception("Error");
+                }
+            });
+        }
     }
 }

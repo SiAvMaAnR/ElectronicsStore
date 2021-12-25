@@ -8,9 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CombinedProductPage">
     <Grid>
-        <TabControl FontSize="14" FontFamily="Arial">
+        <TabControl FontSize="14" FontFamily="Arial" Padding="0" BorderThickness="0">
 
-            <TabItem Header="Товары" >
+            <TabItem Header="Товары">
                 <Frame Content="{Binding ProductPage}" NavigationUIVisibility="Hidden"/>
             </TabItem>
             <TabItem Header="Типы" >

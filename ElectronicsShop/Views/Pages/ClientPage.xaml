@@ -58,7 +58,7 @@
         </Grid>
 
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="#2d2d2f">
             <Button Content="Добавить" Click="Button_Click"/>
         </Grid>
     </Grid>

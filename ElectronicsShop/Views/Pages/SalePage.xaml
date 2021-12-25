@@ -84,7 +84,7 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Background="#2d2d2f">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>

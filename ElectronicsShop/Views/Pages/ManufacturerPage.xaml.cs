@@ -27,18 +27,46 @@ namespace ElectronicsShop.Views.Pages
     {
         public ManufacturerViewModel ManufacturerViewModel = new ManufacturerViewModel();
         public InteractionDataBaseService ManufacturerDataBaseService;
-        private readonly string tableName = "[Manufacturer]";
+        private SqlConnection sqlConnection;
+
 
         public ManufacturerPage(SqlConnection sqlConnection)
         {
             InitializeComponent();
             DataContext = ManufacturerViewModel;
             ManufacturerDataBaseService = new ManufacturerDataBaseService(sqlConnection);
+            this.sqlConnection = sqlConnection;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ManufacturerViewModel.ManufacturerDataTable.Rows.Add();
+        }
+
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            await SearchAsync();
+        }
+
+        private async Task SearchAsync()
+        {
+            try
+            {
+                string additionalSqlScript = await ManufacturerDataBaseService.GenerateQueryAsync(new List<(string, string)>()
+                {
+                    ("[Name]", ManufacturerViewModel.NameSearch ),
+                    ("[Country]", ManufacturerViewModel.CountrySearch ),
+                });
+
+
+                ManufacturerViewModel.ManufacturerDataTable = await ManufacturerDataBaseService.GetDataTable(sqlConnection,
+                    nameDB: "[dbo].[Manufacturer]",
+                    additionalSqlScript: additionalSqlScript + "ORDER BY [ManufacturerId] ASC;");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
