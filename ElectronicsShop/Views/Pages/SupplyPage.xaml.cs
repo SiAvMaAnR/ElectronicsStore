@@ -97,7 +97,8 @@ namespace ElectronicsShop.Views.Pages
                 await sqlConnection.OpenAsync();
                 DataGrid dataGrid = (DataGrid)sender;
                 DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
-                selectedId = (int)dataRowView["WaybillId"];
+
+                selectedId = (dataRowView != null) ? (int)dataRowView["WaybillId"] : 0;
 
                 SupplyViewModel.ProductInWaybillDataTable = await ProductInWaybillDataBaseService.GetDataTable(sqlConnection,
                     nameDB: "[dbo].[ProductInWaybill]",
