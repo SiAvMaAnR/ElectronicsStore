@@ -100,14 +100,14 @@ namespace ElectronicsShop.Views.Pages
                 await sqlConnection.OpenAsync();
                 DataGrid dataGrid = (DataGrid)sender;
                 DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
-                
-                selectedId = (dataRowView["CheckId"]!=null)?(int)dataRowView["CheckId"] :0;
+
+                selectedId = (dataRowView != null) ? (int)dataRowView["CheckId"] : 0;
 
                 SaleViewModel.ProductInCheckDataTable = await ProductInCheckDataBaseService.GetDataTable(sqlConnection,
                     nameDB: "[dbo].[ProductInCheck]",
                     additionalSqlScript: $"WHERE [CheckId] = {selectedId};");
 
-                string sqlSqript = $"SELECT SUM(TotalCost) FROM [dbo].[ProductCheck] WHERE [CheckId] = {selectedId};";
+                string sqlSqript = $"SELECT SUM(TotalCost) FROM [dbo].[ProductInCheck] WHERE [CheckId] = {selectedId};";
                 SaleViewModel.Income = await ProductInCheckDataBaseService.GetValueFromSql(sqlSqript);
             }
             catch { }
@@ -117,7 +117,7 @@ namespace ElectronicsShop.Views.Pages
             }
         }
 
-        
+
 
         private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
