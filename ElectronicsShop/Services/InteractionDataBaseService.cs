@@ -61,10 +61,7 @@ namespace ElectronicsShop.Services
 
                     sqlDataAdapter.Update(table);
                 }
-                catch (Exception ex)
-                {
-                    throw ex ?? new Exception("Неизвестная ошибка!");
-                }
+                catch { throw; }
             });
         }
 
@@ -137,11 +134,7 @@ namespace ElectronicsShop.Services
                     return (execute == DBNull.Value) ? 0 : (decimal)execute;
                 });
             }
-            catch (Exception ex)
-            {
-
-                throw ex ?? new Exception("Неизвестная ошибка");
-            }
+            catch { throw; }
 
         }
     }
