@@ -141,9 +141,6 @@ namespace ElectronicsShop
                 await GetTotalCost(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
                 await supplyPage.ProductInWaybillDataBaseService.UpdateDataBase(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
                 supplyPage.ProductInWaybillDataBaseService.UpdateDataTable(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
-
-
-
             }
             catch (Exception ex)
             {

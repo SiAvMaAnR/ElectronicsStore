@@ -117,8 +117,6 @@ namespace ElectronicsShop.Views.Pages
             }
         }
 
-
-
         private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
             await SearchAsync();
