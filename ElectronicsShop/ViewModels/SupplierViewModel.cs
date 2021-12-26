@@ -20,5 +20,29 @@ namespace ElectronicsShop.ViewModels
                 OnPropertyChanged(nameof(supplierDataTable));
             }
         }
+
+        private string nameSearch = "";
+
+        public string NameSearch
+        {
+            get { return nameSearch; }
+            set
+            {
+                nameSearch = value;
+                OnPropertyChanged(nameof(nameSearch));
+            }
+        }
+
+        private string citySearch = "";
+
+        public string CitySearch
+        {
+            get { return citySearch; }
+            set
+            {
+                citySearch = value;
+                OnPropertyChanged(nameof(citySearch));
+            }
+        }
     }
 }

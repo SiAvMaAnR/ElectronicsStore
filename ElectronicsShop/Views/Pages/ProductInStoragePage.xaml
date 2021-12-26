@@ -142,7 +142,7 @@
                     <TextBox Text="{Binding YearSearch}" Style="{StaticResource TextBoxSearch}"/>
                     <TextBlock Text="Цвет товара" Style="{StaticResource TextBlockSearch}"/>
                     <TextBox Text="{Binding ColorSearch}" Style="{StaticResource TextBoxSearch}"/>
-                    <Button Content="Найти" Margin="0,10" Width="100" Click="ButtonSearch_Click" Style="{StaticResource Button}"/>
+                    <Button Content="Найти" Margin="0,30" Width="100" Click="ButtonSearch_Click" Style="{StaticResource Button}"/>
                 </StackPanel>
             </Grid>
         </Grid>

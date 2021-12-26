@@ -124,7 +124,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <TextBlock Text="Покупатель" Style="{StaticResource TitleTextBlock}"/>
+                <TextBlock Text="Покупатели" Style="{StaticResource TitleTextBlock}"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -134,7 +134,7 @@
             <Grid Grid.Row="2">
             </Grid>
 
-            <Grid Grid.Row="3" >
+            <Grid Grid.Row="3">
                 <StackPanel Margin="0,40">
                     <TextBlock Text="Фамилия" Style="{StaticResource TextBlockSearch}"/>
                     <TextBox Text="{Binding LastNameSearch}" Style="{StaticResource TextBoxSearch}"/>
@@ -142,7 +142,7 @@
                     <TextBox Text="{Binding FirstNameSearch}" Style="{StaticResource TextBoxSearch}"/>
                     <TextBlock Text="Отчество" Style="{StaticResource TextBlockSearch}"/>
                     <TextBox Text="{Binding MiddleNameSearch}" Style="{StaticResource TextBoxSearch}"/>
-                    <Button Content="Найти" Margin="0,10" Width="100" Click="ButtonSearch_Click" Style="{StaticResource Button}"/>
+                    <Button Content="Найти" Margin="0,30" Width="100" Click="ButtonSearch_Click" Style="{StaticResource Button}"/>
                 </StackPanel>
             </Grid>
         </Grid>

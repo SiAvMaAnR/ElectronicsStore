@@ -1,22 +1,13 @@
 ﻿using ElectronicsShop.Services;
 using ElectronicsShop.ViewModels;
-using ElectronicsShop.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ElectronicsShop.Views.Pages
 {
@@ -74,7 +65,7 @@ namespace ElectronicsShop.Views.Pages
             {
                 string additionalSqlScript = await ProductDataBaseService.GenerateQueryAsync(new List<(string, string)>()
                 {
-                    
+
                     ("(SELECT [Name] FROM [dbo].[Type] WHERE [dbo].[Type].TypeId = [dbo].[Product].[TypeId])", ProductViewModel.TypeSearch ),
                     ("(SELECT [Name] FROM [dbo].[Manufacturer] WHERE [dbo].[Manufacturer].ManufacturerId = [dbo].[Product].[ManufacturerId])", ProductViewModel.ManufacturerSearch ),
                     ("[Model]", ProductViewModel.ModelSearch ),

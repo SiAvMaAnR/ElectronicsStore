@@ -82,7 +82,7 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
-                if (selectedId == 0) throw new Exception("Выберите накладную!");
+                if (selectedId == 0) throw new Exception("Выберите счет!");
                 DataRowCollection dataRowCollection = SaleViewModel.ProductInCheckDataTable.Rows;
                 dataRowCollection.Add();
                 dataRowCollection[dataRowCollection.Count-1]["CheckId"] = selectedId;
@@ -109,6 +109,11 @@ namespace ElectronicsShop.Views.Pages
             {
 
             }
+        }
+
+        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
