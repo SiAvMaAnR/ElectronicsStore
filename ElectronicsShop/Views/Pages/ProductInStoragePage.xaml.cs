@@ -26,13 +26,14 @@ namespace ElectronicsShop.Views.Pages
     {
         public ProductInStorageViewModel ProductInStorageViewModel = new ProductInStorageViewModel();
         public InteractionDataBaseService ProductInStorageDataBaseService;
-        private readonly string tableName = "[ProductInStorage]";
+        private SqlConnection sqlConnection;
 
         public ProductInStoragePage(SqlConnection sqlConnection)
         {
             InitializeComponent();
             DataContext = ProductInStorageViewModel;
             ProductInStorageDataBaseService = new ProductInStorageDataBaseService(sqlConnection);
+            this.sqlConnection = sqlConnection;
         }
 
         private DataTable selectionDataTable = new DataTable();
@@ -53,5 +54,35 @@ namespace ElectronicsShop.Views.Pages
         {
             ProductInStorageViewModel.ProductInStorageDataTable.Rows.Add();
         }
+
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            await SearchAsync();
+        }
+
+        private async Task SearchAsync()
+        {
+            try
+            {
+                string additionalSqlScript = await ProductInStorageDataBaseService.GenerateQueryAsync(new List<(string, string)>()
+                {
+                    ("(SELECT [Name] FROM [dbo].[Type] WHERE [dbo].[Type].[TypeId] = [dbo].[Product].[TypeId]) ", ProductInStorageViewModel.TypeSearch ),
+                    ("(SELECT [Name] FROM [dbo].[Manufacturer] WHERE [dbo].[Manufacturer].[ManufacturerId] = [dbo].[Product].[ManufacturerId]) ", ProductInStorageViewModel.ManufacturerSearch ),
+                    ("[Model] ", ProductInStorageViewModel.ModelSearch ),
+                    ("[Year]", ProductInStorageViewModel.YearSearch ),
+                    ("[Color]", ProductInStorageViewModel.ColorSearch ),
+                });
+
+                string sqlSqript = $"SELECT * FROM [dbo].[ProductInStorage] WHERE [ProductInStorage].[ProductId] IN (SELECT [ProductId] FROM [dbo].[Product] " + additionalSqlScript + ") " + " ORDER BY [ProductInStorageId] ASC;";
+
+
+                ProductInStorageViewModel.ProductInStorageDataTable = await ProductInStorageDataBaseService.GetDataTable(sqlConnection, sqlSqript);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

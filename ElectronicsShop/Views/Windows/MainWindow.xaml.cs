@@ -1,4 +1,5 @@
-﻿using ElectronicsShop.ViewModels;
+﻿using ElectronicsShop.Services;
+using ElectronicsShop.ViewModels;
 using System;
 using System.Configuration;
 using System.Data;
@@ -74,7 +75,14 @@ namespace ElectronicsShop
                 supplyPage.SupplyViewModel.WaybillDataTable = await supplyPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
                 supplyPage.SupplyViewModel.ProductInWaybillDataTable = await supplyPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
 
-                productInStoragePage.SetDataTable(combinedProductPage.productPage.ProductViewModel.ProductDataTable);
+                DataTable newProductInStorageDataTable = await new ProductDataBaseService(sqlConnection).GetDataTable(sqlConnection, 
+                    @"SELECT [ProductId] ,[Type].[Name] AS Type, Model, [Manufacturer].[Name] AS Manufacturer, [Year], [Color]  FROM [dbo].[Product] 
+                    INNER JOIN[dbo].[Type]
+                        ON[dbo].[Product].[TypeId] = [dbo].[Type].[TypeId]
+                    INNER JOIN[dbo].[Manufacturer]
+                        ON[dbo].[Product].[ManufacturerId] = [dbo].[Manufacturer].[ManufacturerId]; ");
+
+                productInStoragePage.SetDataTable(newProductInStorageDataTable);
                 combinedProductPage.productPage.SetDataTable(combinedProductPage.typePage.TypeViewModel.TypeDataTable, combinedProductPage.manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
                 salePage.SetDataTable(clientPage.ClientViewModel.ClientDataTable, productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable);
                 supplyPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable, combinedProductPage.productPage.ProductViewModel.ProductDataTable);

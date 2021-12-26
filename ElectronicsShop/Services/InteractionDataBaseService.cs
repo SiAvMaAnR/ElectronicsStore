@@ -19,7 +19,7 @@ namespace ElectronicsShop.Services
             this.sqlConnection = sqlConnection;
         }
 
-        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript = "", string baseSqlScript = "SELECT * FROM")
+        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript , string baseSqlScript = "SELECT * FROM")
         {
             string sqlScript = $"{baseSqlScript} {nameDB} {additionalSqlScript}";
 
@@ -35,6 +35,21 @@ namespace ElectronicsShop.Services
 
             return dataTable;
         }
+
+        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string sqlQuery)
+        {
+            DataTable dataTable = new DataTable();
+            await Task.Run(() =>
+            {
+                dataTable.AcceptChanges();
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
+                sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(dataTable);
+            });
+
+            return dataTable;
+        }
+
 
         public async Task UpdateDataBase(DataTable table)
         {
