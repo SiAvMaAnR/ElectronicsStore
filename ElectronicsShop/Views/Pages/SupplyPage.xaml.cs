@@ -134,10 +134,7 @@ namespace ElectronicsShop.Views.Pages
                     nameDB: "[dbo].[Waybill]",
                     additionalSqlScript: additionalSqlScript + "ORDER BY [WaybillId] ASC;");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch { throw; }
         }
     }
 }

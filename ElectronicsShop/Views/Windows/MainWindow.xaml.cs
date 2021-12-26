@@ -12,7 +12,7 @@ namespace ElectronicsShop
     public partial class MainWindow : Window
     {
         private MainViewModel mainViewModel;
-        private SqlConnection sqlConnection;
+        private SqlConnection sqlConnection ;
 
         private Views.Pages.ClientPage clientPage;
 
@@ -32,6 +32,9 @@ namespace ElectronicsShop
                 InitializeComponent();
                 sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDB"].ConnectionString);
 
+               
+
+
                 mainViewModel = new MainViewModel();
 
                 clientPage = new Views.Pages.ClientPage(sqlConnection);
@@ -47,16 +50,16 @@ namespace ElectronicsShop
 
                 mainViewModel.FrameCurrentPage = combinedProductPage;
 
-                FillDataGrid();
+                FillDataGridAsync();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Environment.Exit(0);
             }
         }
 
-        private async void FillDataGrid()
+        private async void FillDataGridAsync()
         {
             try
             {
@@ -93,10 +96,7 @@ namespace ElectronicsShop
                 supplyPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable, newProductDataTable);
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch { throw; }
             finally
             {
                 await sqlConnection.CloseAsync();
@@ -202,10 +202,8 @@ namespace ElectronicsShop
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    throw ex ?? new Exception("Неизвестная ошибка");
-                }
+                catch { throw; }
+
             });
         }
     }

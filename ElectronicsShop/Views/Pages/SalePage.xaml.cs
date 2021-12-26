@@ -138,11 +138,7 @@ namespace ElectronicsShop.Views.Pages
                     nameDB: "[dbo].[Check]",
                     additionalSqlScript: additionalSqlScript + "ORDER BY [CheckId] ASC;");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            catch { throw; }
         }
     }
 }
