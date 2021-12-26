@@ -33,5 +33,43 @@ namespace ElectronicsShop.ViewModels
                 OnPropertyChanged(nameof(productInWaybillDataTable));
             }
         }
+        
+
+        private string waybillSearch = "";
+
+        public string WaybillSearch
+        {
+            get { return waybillSearch; }
+            set
+            {
+                waybillSearch = value;
+                OnPropertyChanged(nameof(waybillSearch));
+            }
+        }
+
+        private string supplierSearch = "";
+
+        public string SupplierSearch
+        {
+            get { return supplierSearch; }
+            set
+            {
+                supplierSearch = value;
+                OnPropertyChanged(nameof(supplierSearch));
+            }
+        }
+
+
+        private decimal expenditure = 0;
+
+        public decimal Expenditure
+        {
+            get { return expenditure; }
+            set
+            {
+                expenditure = value;
+                OnPropertyChanged(nameof(expenditure));
+            }
+        }
     }
 }

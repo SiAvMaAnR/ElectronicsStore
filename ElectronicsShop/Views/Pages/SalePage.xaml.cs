@@ -74,7 +74,7 @@ namespace ElectronicsShop.Views.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);    
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -85,7 +85,7 @@ namespace ElectronicsShop.Views.Pages
                 if (selectedId == 0) throw new Exception("Выберите счет!");
                 DataRowCollection dataRowCollection = SaleViewModel.ProductInCheckDataTable.Rows;
                 dataRowCollection.Add();
-                dataRowCollection[dataRowCollection.Count-1]["CheckId"] = selectedId;
+                dataRowCollection[dataRowCollection.Count - 1]["CheckId"] = selectedId;
             }
             catch (Exception ex)
             {
@@ -97,22 +97,51 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
+                await sqlConnection.OpenAsync();
                 DataGrid dataGrid = (DataGrid)sender;
                 DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
-                selectedId = (int)dataRowView["CheckId"];
+                
+                selectedId = (dataRowView["CheckId"]!=null)?(int)dataRowView["CheckId"] :0;
 
                 SaleViewModel.ProductInCheckDataTable = await ProductInCheckDataBaseService.GetDataTable(sqlConnection,
                     nameDB: "[dbo].[ProductInCheck]",
                     additionalSqlScript: $"WHERE [CheckId] = {selectedId};");
-            }
-            catch
-            {
 
+                string sqlSqript = $"SELECT SUM(TotalCost) FROM [dbo].[ProductCheck] WHERE [CheckId] = {selectedId};";
+                SaleViewModel.Income = await ProductInCheckDataBaseService.GetValueFromSql(sqlSqript);
+            }
+            catch { }
+            finally
+            {
+                await sqlConnection.CloseAsync();
             }
         }
 
-        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        
+
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
+            await SearchAsync();
+        }
+
+        private async Task SearchAsync()
+        {
+            try
+            {
+                string additionalSqlScript = await CheckDataBaseService.GenerateQueryAsync(new List<(string, string)>()
+                {
+                    ("[CheckNumber]", SaleViewModel.CheckSearch ),
+                    ("(SELECT [LastName] FROM [dbo].[Client] WHERE [dbo].[Client].[ClientId] = [dbo].[Check].[ClientId]) ", SaleViewModel.ClientSearch ),
+                });
+
+                SaleViewModel.CheckDataTable = await CheckDataBaseService.GetDataTable(sqlConnection,
+                    nameDB: "[dbo].[Check]",
+                    additionalSqlScript: additionalSqlScript + "ORDER BY [CheckId] ASC;");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }

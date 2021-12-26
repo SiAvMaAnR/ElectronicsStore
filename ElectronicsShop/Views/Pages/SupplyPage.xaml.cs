@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace ElectronicsShop.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для SupplyPage.xaml
-    /// </summary>
     public partial class SupplyPage : Page
     {
         public SupplyViewModel SupplyViewModel = new SupplyViewModel();
@@ -97,6 +94,7 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
+                await sqlConnection.OpenAsync();
                 DataGrid dataGrid = (DataGrid)sender;
                 DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
                 selectedId = (int)dataRowView["WaybillId"];
@@ -104,10 +102,40 @@ namespace ElectronicsShop.Views.Pages
                 SupplyViewModel.ProductInWaybillDataTable = await ProductInWaybillDataBaseService.GetDataTable(sqlConnection,
                     nameDB: "[dbo].[ProductInWaybill]",
                     additionalSqlScript: $"WHERE [WaybillId] = {selectedId};");
-            }
-            catch
-            {
 
+                string sqlSqript = $"SELECT SUM(TotalCost) FROM [dbo].[ProductInWaybill] WHERE [WaybillId] = {selectedId};";
+                SupplyViewModel.Expenditure = await ProductInWaybillDataBaseService.GetValueFromSql(sqlSqript);
+            }
+            catch { }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+        }
+
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            await SearchAsync();
+        }
+
+        private async Task SearchAsync()
+        {
+            try
+            {
+                string additionalSqlScript = await WaybillDataBaseService.GenerateQueryAsync(new List<(string, string)>()
+                {
+                    ("[WaybillNumber]", SupplyViewModel.WaybillSearch ),
+                    ("(SELECT [Name] FROM [dbo].[Supplier] WHERE [dbo].[Supplier].[SupplierId] = [dbo].[Waybill].[SupplierId]) ", SupplyViewModel.SupplierSearch ),
+                });
+
+
+                SupplyViewModel.WaybillDataTable = await WaybillDataBaseService.GetDataTable(sqlConnection,
+                    nameDB: "[dbo].[Waybill]",
+                    additionalSqlScript: additionalSqlScript + "ORDER BY [WaybillId] ASC;");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

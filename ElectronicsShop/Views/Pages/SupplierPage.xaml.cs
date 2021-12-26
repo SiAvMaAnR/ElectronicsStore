@@ -40,7 +40,7 @@ namespace ElectronicsShop.Views.Pages
         {
             await SearchAsync();
         }
-       
+
         private async Task SearchAsync()
         {
             try

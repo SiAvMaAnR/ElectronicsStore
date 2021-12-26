@@ -16,25 +16,73 @@
                 <Setter Property="FontFamily" Value="Arial" />
             </Style.Setters>
         </Style>
-
-        <Style TargetType="{x:Type TextBox}" x:Key ="ColumnDG">
-            <Setter Property="MaxLength" Value="10"/>
-        </Style>
-
         <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextBlock">
             <Style.Setters>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontSize" Value="24"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style.Setters>
         </Style>
-
-        <Style TargetType="{x:Type Button}" x:Key="TestButton">
+        <Style TargetType="{x:Type Button}" x:Key="Button">
             <Style.Setters>
-                <Setter Property="FontSize" Value="40"/>
-                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Padding="2" BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Margin" Value="25,15"/>
+                <Setter Property="Background" Value="#FF5D2BB2"/>
+                <Setter Property="Foreground" Value="#FFC2C2C2"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#FF5D2BB2"/>
             </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockSearch">
+            <Style.Setters>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#FFC2C2C2"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" x:Key="TextBoxSearch">
+            <Style.Setters>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="Margin" Value="25,5"/>
+                <Setter Property="Padding" Value="8,2"/>
+            </Style.Setters>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4" />
+                </Style>
+            </Style.Resources>
         </Style>
 
         <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell}" x:Key="ClickCell">
@@ -43,7 +91,6 @@
         <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell}" x:Key="ClickCell1">
             <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick_1"/>
         </Style>
-        
     </Page.Resources>
 
 
@@ -92,33 +139,42 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Column="2" Background="#2d2d2f">
+        <Grid Grid.Column="2" Background="#2d2d2f" MinWidth="160">
             <Grid.RowDefinitions>
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
                 <TextBlock Text="Поставки" Style="{StaticResource TitleTextBlock}"/>
             </Grid>
-            
+
             <Grid Grid.Row="1">
-                <Button Content="Добавить накладную" Click="Button_Click"/>
+                <Button Content="Добавить накладную" Click="Button_Click" Style="{StaticResource Button}"/>
             </Grid>
 
             <Grid Grid.Row="2">
-                <Button Content="Добавить товар в накладную" Click="Button_Click_1"/>
+                <Button Content="Добавить товар" Click="Button_Click_1" Style="{StaticResource Button}"/>
             </Grid>
 
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="3" >
+                <StackPanel Margin="0,40">
+                    <TextBlock Text="Номер накладной" Style="{StaticResource TextBlockSearch}"/>
+                    <TextBox Text="{Binding WaybillSearch}" Style="{StaticResource TextBoxSearch}"/>
+                    <TextBlock Text="Поставщик" Style="{StaticResource TextBlockSearch}"/>
+                    <TextBox Text="{Binding SupplierSearch}" Style="{StaticResource TextBoxSearch}"/>
+                    <Button Content="Найти" Margin="0,30" Width="100" Click="ButtonSearch_Click" Style="{StaticResource Button}"/>
+                </StackPanel>
             </Grid>
-
-            <Grid Grid.Row="6">
+            
+            <Grid Grid.Row="4" >
+                <TextBlock FontSize="20" Style="{StaticResource TextBlockSearch}" >
+                    <Run Text="К оплате: "/>
+                    <Run Text="{Binding Path=Expenditure}"/>
+                </TextBlock>
             </Grid>
         </Grid>
     </Grid>

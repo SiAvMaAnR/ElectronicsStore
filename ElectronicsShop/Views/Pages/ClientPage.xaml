@@ -124,7 +124,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <TextBlock Text="Покупатели" Style="{StaticResource TitleTextBlock}"/>
+                <TextBlock Text="Клиенты" Style="{StaticResource TitleTextBlock}"/>
             </Grid>
 
             <Grid Grid.Row="1">

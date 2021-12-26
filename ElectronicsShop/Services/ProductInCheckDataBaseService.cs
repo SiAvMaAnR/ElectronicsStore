@@ -1,5 +1,7 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ElectronicsShop.Services
 {
@@ -9,7 +11,5 @@ namespace ElectronicsShop.Services
             : base(sqlConnection)
         {
         }
-
-       
     }
 }

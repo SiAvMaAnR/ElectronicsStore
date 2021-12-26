@@ -148,10 +148,11 @@
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="60*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <TextBlock Text="Поставщики" Style="{StaticResource TitleTextBlock}"/>
+                <TextBlock Text="Продажи" Style="{StaticResource TitleTextBlock}"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -159,17 +160,24 @@
             </Grid>
 
             <Grid Grid.Row="2">
-                <Button Content="Добавить товар в счет" Click="Button_Click_1" Style="{StaticResource Button}"/>
+                <Button Content="Добавить товар" Click="Button_Click_1" Style="{StaticResource Button}"/>
             </Grid>
 
             <Grid Grid.Row="3" >
                 <StackPanel Margin="0,40">
-                    <TextBlock Text="Название" Style="{StaticResource TextBlockSearch}"/>
-                    <TextBox Text="{Binding NameSearch}" Style="{StaticResource TextBoxSearch}"/>
-                    <TextBlock Text="Город" Style="{StaticResource TextBlockSearch}"/>
-                    <TextBox Text="{Binding CitySearch}" Style="{StaticResource TextBoxSearch}"/>
+                    <TextBlock Text="Номер счета" Style="{StaticResource TextBlockSearch}"/>
+                    <TextBox Text="{Binding CheckSearch}" Style="{StaticResource TextBoxSearch}"/>
+                    <TextBlock Text="Клиент" Style="{StaticResource TextBlockSearch}"/>
+                    <TextBox Text="{Binding ClientSearch}" Style="{StaticResource TextBoxSearch}"/>
                     <Button Content="Найти" Margin="0,30" Width="100" Click="ButtonSearch_Click" Style="{StaticResource Button}"/>
                 </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="4" >
+                <TextBlock FontSize="20" Style="{StaticResource TextBlockSearch}" >
+                    <Run Text="К оплате: "/>
+                    <Run Text="{Binding Path=Income}"/>
+                </TextBlock>
             </Grid>
         </Grid>
     </Grid>

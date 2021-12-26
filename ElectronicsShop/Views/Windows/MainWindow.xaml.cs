@@ -75,17 +75,22 @@ namespace ElectronicsShop
                 supplyPage.SupplyViewModel.WaybillDataTable = await supplyPage.WaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[Waybill]", "ORDER BY WaybillId ASC");
                 supplyPage.SupplyViewModel.ProductInWaybillDataTable = await supplyPage.ProductInWaybillDataBaseService.GetDataTable(sqlConnection, "[dbo].[ProductInWaybill]", "ORDER BY ProductInWaybillId ASC");
 
-                DataTable newProductInStorageDataTable = await new ProductDataBaseService(sqlConnection).GetDataTable(sqlConnection, 
+                DataTable newProductDataTable = await new ProductDataBaseService(sqlConnection).GetDataTable(sqlConnection,
                     @"SELECT [ProductId] ,[Type].[Name] AS Type, Model, [Manufacturer].[Name] AS Manufacturer, [Year], [Color]  FROM [dbo].[Product] 
-                    INNER JOIN[dbo].[Type]
-                        ON[dbo].[Product].[TypeId] = [dbo].[Type].[TypeId]
-                    INNER JOIN[dbo].[Manufacturer]
-                        ON[dbo].[Product].[ManufacturerId] = [dbo].[Manufacturer].[ManufacturerId]; ");
+                    INNER JOIN[dbo].[Type] ON[dbo].[Product].[TypeId] = [dbo].[Type].[TypeId]
+                    INNER JOIN[dbo].[Manufacturer] ON[dbo].[Product].[ManufacturerId] = [dbo].[Manufacturer].[ManufacturerId]; ");
 
-                productInStoragePage.SetDataTable(newProductInStorageDataTable);
+                DataTable newProductInStorageDataTable = await new ProductInStorageDataBaseService(sqlConnection).GetDataTable(sqlConnection,
+                    @"SELECT [ProductInStorageId], [Model], [Color], [Amount], [Year], [dbo].[Type].[Name] AS [Type], [dbo].[Manufacturer].[Name] AS [Manufacturer]  FROM [dbo].[ProductInStorage]
+	                    INNER JOIN [dbo].[Product] ON [dbo].[ProductInStorage].[ProductId] = [dbo].[Product].[ProductId]
+	                    INNER JOIN [dbo].[Type] ON [dbo].[Product].[TypeId] = [dbo].[Type].[TypeId]
+	                    INNER JOIN [dbo].[Manufacturer] ON [dbo].[Product].[ManufacturerId] = [dbo].[Manufacturer].[ManufacturerId]; ");
+
+
+                productInStoragePage.SetDataTable(newProductDataTable);
                 combinedProductPage.productPage.SetDataTable(combinedProductPage.typePage.TypeViewModel.TypeDataTable, combinedProductPage.manufacturerPage.ManufacturerViewModel.ManufacturerDataTable);
-                salePage.SetDataTable(clientPage.ClientViewModel.ClientDataTable, productInStoragePage.ProductInStorageViewModel.ProductInStorageDataTable);
-                supplyPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable, combinedProductPage.productPage.ProductViewModel.ProductDataTable);
+                salePage.SetDataTable(clientPage.ClientViewModel.ClientDataTable, newProductInStorageDataTable);
+                supplyPage.SetDataTable(supplierPage.SupplierViewModel.SupplierDataTable, newProductDataTable);
 
             }
             catch (Exception ex)
@@ -128,7 +133,7 @@ namespace ElectronicsShop
 
                 await supplyPage.WaybillDataBaseService.UpdateDataBase(supplyPage.SupplyViewModel.WaybillDataTable);
                 supplyPage.WaybillDataBaseService.UpdateDataTable(supplyPage.SupplyViewModel.WaybillDataTable);
-                
+
                 await GetTotalCost(salePage.SaleViewModel.ProductInCheckDataTable);
                 await salePage.ProductInCheckDataBaseService.UpdateDataBase(salePage.SaleViewModel.ProductInCheckDataTable);
                 salePage.ProductInCheckDataBaseService.UpdateDataTable(salePage.SaleViewModel.ProductInCheckDataTable);
@@ -136,6 +141,9 @@ namespace ElectronicsShop
                 await GetTotalCost(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
                 await supplyPage.ProductInWaybillDataBaseService.UpdateDataBase(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
                 supplyPage.ProductInWaybillDataBaseService.UpdateDataTable(supplyPage.SupplyViewModel.ProductInWaybillDataTable);
+
+
+
             }
             catch (Exception ex)
             {
@@ -185,7 +193,10 @@ namespace ElectronicsShop
                 {
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        if ((row.RowState == DataRowState.Modified || row.RowState == DataRowState.Added) && decimal.TryParse(row["Cost"].ToString(), out decimal Cost) && int.TryParse(row["Amount"].ToString(), out int Amount))
+                        if ((row.RowState == DataRowState.Modified
+                            || row.RowState == DataRowState.Added)
+                            && decimal.TryParse(row["Cost"].ToString(), out decimal Cost)
+                            && int.TryParse(row["Amount"].ToString(), out int Amount))
                         {
                             row["TotalCost"] = Cost * Amount;
                         }

@@ -19,7 +19,7 @@ namespace ElectronicsShop.Services
             this.sqlConnection = sqlConnection;
         }
 
-        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript , string baseSqlScript = "SELECT * FROM")
+        public async Task<DataTable> GetDataTable(SqlConnection sqlConnection, string nameDB, string additionalSqlScript, string baseSqlScript = "SELECT * FROM")
         {
             string sqlScript = $"{baseSqlScript} {nameDB} {additionalSqlScript}";
 
@@ -87,7 +87,7 @@ namespace ElectronicsShop.Services
             catch { }
         }
 
-        public async Task<string> GenerateQueryAsync(List<(string,string)> queryValues)
+        public async Task<string> GenerateQueryAsync(List<(string, string)> queryValues)
         {
             return await Task.Run(() =>
             {
@@ -123,6 +123,26 @@ namespace ElectronicsShop.Services
                     throw ex ?? new Exception("Error");
                 }
             });
+        }
+
+
+        public async Task<decimal> GetValueFromSql(string sqlScript)
+        {
+            try
+            {
+                return await Task.Run(async () =>
+                {
+                    SqlCommand command = new SqlCommand(sqlScript, sqlConnection);
+                    var execute = await command.ExecuteScalarAsync();
+                    return (execute == DBNull.Value) ? 0 : (decimal)execute;
+                });
+            }
+            catch (Exception ex)
+            {
+
+                throw ex ?? new Exception("Неизвестная ошибка");
+            }
+
         }
     }
 }
