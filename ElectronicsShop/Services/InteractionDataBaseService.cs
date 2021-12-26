@@ -114,10 +114,9 @@ namespace ElectronicsShop.Services
                     return additionalSqlScript;
 
                 }
-                catch (Exception ex)
+                catch
                 {
-                    return "";
-                    throw ex ?? new Exception("Error");
+                    throw;
                 }
             });
         }
