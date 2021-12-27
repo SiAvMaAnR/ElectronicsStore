@@ -74,10 +74,11 @@ namespace ElectronicsShop.Services
         public void CellSelected(DataTable selectionDataTable, string field, object sender)
         {
             DataGridCell dataGridCell = (DataGridCell)sender;
-            DataRowView dataRowView = null;
+
             try
             {
-                dataRowView = (DataRowView)dataGridCell.DataContext;
+                DataRowView dataRowView = (DataRowView)dataGridCell.DataContext;
+                
                 SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
                 selectionWindow.ShowDialog();
             }

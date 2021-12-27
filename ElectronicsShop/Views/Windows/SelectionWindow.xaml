@@ -25,10 +25,11 @@
                   CellStyle="{StaticResource Cell}" 
                   RowStyle="{StaticResource ClickRow}" 
                   HorizontalContentAlignment="Center" 
-                  ColumnWidth="*" x:Name="SelectionDataGrid" 
+                  ColumnWidth="*" 
+                  x:Name="SelectionDataGrid" 
                   ItemsSource="{Binding SelectionDataTable.DefaultView}" 
                   AutoGenerateColumns="True"
-                  IsReadOnly="True">
+                  IsReadOnly="True" Loaded="SelectionDataGrid_Loaded">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
