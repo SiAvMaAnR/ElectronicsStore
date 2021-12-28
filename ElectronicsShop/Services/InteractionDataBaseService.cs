@@ -61,7 +61,7 @@ namespace ElectronicsShop.Services
 
                     sqlDataAdapter.Update(table);
                 }
-                catch { throw; }
+                catch (Exception) { throw; }
             });
         }
 
@@ -82,7 +82,7 @@ namespace ElectronicsShop.Services
                 SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
                 selectionWindow.ShowDialog();
             }
-            catch { }
+            catch(Exception) { }
         }
 
         public async Task<string> GenerateQueryAsync(List<(string, string)> queryValues)
@@ -115,7 +115,7 @@ namespace ElectronicsShop.Services
                     return additionalSqlScript;
 
                 }
-                catch
+                catch (Exception)
                 {
                     throw;
                 }
@@ -134,7 +134,7 @@ namespace ElectronicsShop.Services
                     return (execute == DBNull.Value) ? 0 : (decimal)execute;
                 });
             }
-            catch { throw; }
+            catch(Exception) { throw; }
 
         }
     }
