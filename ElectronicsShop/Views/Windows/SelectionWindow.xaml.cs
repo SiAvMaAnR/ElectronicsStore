@@ -1,4 +1,5 @@
 ﻿using ElectronicsShop.ViewModels;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -36,7 +37,7 @@ namespace ElectronicsShop.Views.Windows
 
             SelectionWindowViewModel.SelectionDataTable = dataTable.Copy();
 
-            
+
         }
 
         private void DataGridRow_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -55,17 +56,27 @@ namespace ElectronicsShop.Views.Windows
 
         private void SelectionDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            int Id = int.Parse(dataRowView[field]?.ToString() ?? "");
-            
-            selectedIndex = new DataView(SelectionWindowViewModel.SelectionDataTable)
-            .ToTable(false, new[] { field })
-            .AsEnumerable()
-            .Select(row => row.Field<int>(field))
-            .ToList()
-            .FindIndex(col => col == Id);
+            try
+            {
+                int.TryParse(dataRowView[field]?.ToString(), out int Id);
+                if (Id != 0)
+                {
+                    selectedIndex = new DataView(SelectionWindowViewModel.SelectionDataTable)
+                    .ToTable(false, new[] { field })
+                    .AsEnumerable()
+                    .Select(row => row.Field<int>(field))
+                    .ToList()
+                    .FindIndex(col => col == Id);
 
-            SelectionDataGrid.SelectedIndex = selectedIndex;
-            SelectionDataGrid.Focus();
+                    SelectionDataGrid.SelectedIndex = selectedIndex;
+                    SelectionDataGrid.Focus();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
     }
 }
