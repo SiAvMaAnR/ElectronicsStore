@@ -4,24 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ElectronicsShop.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для SalePage.xaml
-    /// </summary>
     public partial class SalePage : Page
     {
         public SaleViewModel SaleViewModel = new SaleViewModel();
@@ -126,12 +115,13 @@ namespace ElectronicsShop.Views.Pages
         {
             try
             {
+                //Генерируем дополнительную часть запроса, передавая в метод GenerateQueryAsync введенные пользователем данные и запросы, для получения их из бд
                 string additionalSqlScript = await CheckDataBaseService.GenerateQueryAsync(new List<(string, string)>()
                 {
                     ("[CheckNumber]", SaleViewModel.CheckSearch ),
                     ("(SELECT [LastName] FROM [dbo].[Client] WHERE [dbo].[Client].[ClientId] = [dbo].[Check].[ClientId]) ", SaleViewModel.ClientSearch ),
                 });
-
+                //Заполняем таблицу полученными данными из бд
                 SaleViewModel.CheckDataTable = await CheckDataBaseService.GetDataTable(sqlConnection,
                     nameDB: "[dbo].[Check]",
                     additionalSqlScript: additionalSqlScript + "ORDER BY [CheckId] ASC;");

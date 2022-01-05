@@ -4,24 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ElectronicsShop.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ProductInStoragePage.xaml
-    /// </summary>
     public partial class ProductInStoragePage : Page
     {
         public ProductInStorageViewModel ProductInStorageViewModel = new ProductInStorageViewModel();
@@ -73,8 +62,10 @@ namespace ElectronicsShop.Views.Pages
                     ("[Color]", ProductInStorageViewModel.ColorSearch ),
                 });
 
-                string sqlSqript = $"SELECT * FROM [dbo].[ProductInStorage] WHERE [ProductInStorage].[ProductId] IN (SELECT [ProductId] FROM [dbo].[Product] " + additionalSqlScript + ") " + " ORDER BY [ProductInStorageId] ASC;";
-
+                string sqlSqript = $"SELECT * FROM [dbo].[ProductInStorage] WHERE [ProductInStorage].[ProductId] IN (SELECT [ProductId] FROM [dbo].[Product] "
+                    + additionalSqlScript
+                    + ") "
+                    + " ORDER BY [ProductInStorageId] ASC;";
 
                 ProductInStorageViewModel.ProductInStorageDataTable = await ProductInStorageDataBaseService.GetDataTable(sqlConnection, sqlSqript);
             }

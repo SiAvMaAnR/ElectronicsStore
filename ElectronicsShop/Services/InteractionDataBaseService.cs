@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace ElectronicsShop.Services
@@ -78,11 +77,11 @@ namespace ElectronicsShop.Services
             try
             {
                 DataRowView dataRowView = (DataRowView)dataGridCell.DataContext;
-                
+
                 SelectionWindow selectionWindow = new SelectionWindow(selectionDataTable, field, dataRowView);
                 selectionWindow.ShowDialog();
             }
-            catch(Exception) { }
+            catch (Exception) { }
         }
 
         public async Task<string> GenerateQueryAsync(List<(string, string)> queryValues)
@@ -134,7 +133,7 @@ namespace ElectronicsShop.Services
                     return (execute == DBNull.Value) ? 0 : (decimal)execute;
                 });
             }
-            catch(Exception) { throw; }
+            catch (Exception) { throw; }
 
         }
     }
