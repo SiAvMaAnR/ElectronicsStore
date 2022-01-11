@@ -32,9 +32,6 @@ namespace ElectronicsShop
                 InitializeComponent();
                 sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDB"].ConnectionString);
 
-               
-
-
                 mainViewModel = new MainViewModel();
 
                 clientPage = new Views.Pages.ClientPage(sqlConnection);
