@@ -2,7 +2,6 @@ D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\Electro
 D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\ElectronicsShop.deps.json
 D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\ElectronicsShop.runtimeconfig.json
 D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\ElectronicsShop.dll
-D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\ref\ElectronicsShop.dll
 D:\source\repos\ElectronicsShop\ElectronicsShop\bin\Debug\net6.0-windows\ElectronicsShop.pdb
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\ElectronicsShop.csproj.AssemblyReference.cache
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\App.g.cs
@@ -47,3 +46,4 @@ D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\P
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\SalePage.baml
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\SupplyPage.g.cs
 D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\Views\Pages\SupplyPage.baml
+D:\source\repos\ElectronicsShop\ElectronicsShop\obj\Debug\net6.0-windows\refint\ElectronicsShop.dll
